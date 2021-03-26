@@ -115,7 +115,7 @@ jobs:
           
       - name: 'Build Linux Image'
         run: |
-          native-image --report-unsupported-elements-at-runtime --initialize-at-build-time --no-server -jar bloggo-${{ github.run_number }}.jar
+          native-image --report-unsupported-elements-at-runtime --initialize-at-build-time --no-server --no-fallback --allow-incomplete-classpath -jar bloggo-${{ github.run_number }}.jar
           
       - name: 'Publish Linux Image'
         if: success()
