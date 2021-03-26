@@ -1,7 +1,7 @@
 import com.soynomm.bloggo.enums.TrimPos;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import com.soynomm.bloggo.Utils;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UtilsTests {
 

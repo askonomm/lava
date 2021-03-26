@@ -1,8 +1,8 @@
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import com.soynomm.bloggo.ArgParser;
+import org.junit.jupiter.api.Test;
 
-public class ArgParserTests {
+public class ArgParserTest {
 
     @Test
     public void testGetSingleArg() {

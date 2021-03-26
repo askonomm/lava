@@ -1,6 +1,6 @@
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import com.soynomm.bloggo.Parser;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
