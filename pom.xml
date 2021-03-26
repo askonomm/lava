@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>groupId</groupId>
     <artifactId>bloggo</artifactId>
-    <version>1.3</version>
+    <version>LATEST</version>
     <packaging>jar</packaging>
 
     <build>
