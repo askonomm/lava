@@ -29,9 +29,11 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 8
+          
       - name: 'Build JAR'
         run: |
           mvn package
+          
       - name: 'Change name of JAR'
         run: |
           mv target/bloggo-LATEST.jar target/bloggo-${{ github.run_number }}.jar
@@ -42,7 +44,6 @@ jobs:
           path: target/bloggo-${{ github.run_number }}.jar
           
       - name: 'Create Release'
-        if: contains(github.ref, 'v')
         id: create_release
         uses: actions/create-release@v1
         env:
@@ -53,9 +54,9 @@ jobs:
           body: |
             ...
           draft: false
-          prerelease: true
+          prerelease: false
+          
       - name: 'Upload Release Asset'
-        if: contains(github.ref, 'v')
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
         env:
@@ -65,3 +66,14 @@ jobs:
           asset_path: target/bloggo-${{ github.run_number }}.jar
           asset_name: bloggo-${{ github.run_number }}.jar
           asset_content_type: application/java-archive
+          
+      - name: 'Write Upload URL To File'
+        run: |
+          echo "${{steps.create_release.outputs.upload_url}}" > upload_url.txt
+
+      - name: 'Publish Upload URL'
+        if: contains(github.ref, 'v')
+        uses: actions/upload-artifact@v2-preview
+        with:
+          name: 'upload_url.txt'
+          path: 'upload_url.txt'
