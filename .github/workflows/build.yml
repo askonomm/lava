@@ -32,3 +32,36 @@ jobs:
       - name: 'Build JAR'
         run: |
           mvn package
+      - name: 'Change name of JAR'
+        run: |
+          mv target/bloggo-LATEST.jar target/bloggo-${{ github.run_number }}.jar
+      - name: 'Publish JAR'
+        uses: actions/upload-artifact@v2-preview
+        with:
+          name: 'bloggo-${{ github.run_number }}.jar'
+          path: target/bloggo-${{ github.run_number }}.jar
+          
+      - name: 'Create Release'
+        if: contains(github.ref, 'v')
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        with:
+          tag_name: ${{github.ref}}
+          release_name: Release ${{github.ref}}
+          body: |
+            ...
+          draft: false
+          prerelease: true
+      - name: 'Upload Release Asset'
+        if: contains(github.ref, 'v')
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        with:
+          upload_url: ${{steps.create_release.outputs.upload_url}}
+          asset_path: target/bloggo-${{ github.run_number }}.jar
+          asset_name: bloggo-${{ github.run_number }}.jar
+          asset_content_type: application/java-archive
