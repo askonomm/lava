@@ -2,7 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.soynomm.bloggo.ArgParser;
 import org.junit.jupiter.api.Test;
 
-public class ArgParserTest {
+public class ArgParserTests {
 
     @Test
     public void testGetSingleArg() {
