@@ -72,7 +72,6 @@ jobs:
           echo "${{steps.create_release.outputs.upload_url}}" > upload_url.txt
 
       - name: 'Publish Upload URL'
-        if: contains(github.ref, 'v')
         uses: actions/upload-artifact@v2-preview
         with:
           name: 'upload_url.txt'
