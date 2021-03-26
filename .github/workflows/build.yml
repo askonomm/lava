@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build_jar:
+  build-jar:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -49,8 +49,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         with:
-          tag_name: ${{github.ref}}
-          release_name: Release ${{github.ref}}
+          tag_name: v${{ github.run_number }}
+          release_name: Release ${{ github.run_number }}
           body: |
             ...
           draft: false
@@ -77,3 +77,62 @@ jobs:
         with:
           name: 'upload_url.txt'
           path: 'upload_url.txt'
+          
+  build-linux-image:
+    needs: [build-jar]
+    name: 'Build Linux Image'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2'
+
+      - name: 'Setup Java 8'
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+          
+      - name: 'Setup GraalVM Environment'
+        uses: DeLaGuardo/setup-graalvm@2.0
+        with:
+          graalvm-version: '21.0.0.2.java8'
+
+      - name: 'Install Native Image Plugin'
+        run: |
+          gu install native-image
+          
+      - name: 'Get JAR Artifact'
+        uses: actions/download-artifact@v2-preview
+        with:
+          name: 'bloggo-${{ github.run_number }}.jar'
+
+      - name: 'Download Release URL'
+        uses: actions/download-artifact@v2-preview
+        with:
+          name: 'upload_url.txt'
+
+      - name: 'Set Upload URL Env Var'
+        run: |
+          echo "::set-env name=UPLOAD_URL::$(cat upload_url.txt)"
+          
+      - name: 'Build Linux Image'
+        run: |
+          native-image --report-unsupported-elements-at-runtime --initialize-at-build-time --no-server -jar target/bloggo-${{ github.run_number }}.jar
+          
+      - name: 'Publish Linux Image'
+        if: success()
+        uses: actions/upload-artifact@v2-preview
+        with:
+          name: 'bloggo-${{ github.run_number }}-linux'
+          path: 'bloggo-${{ github.run_number }}'
+
+      - name: 'Upload Linux Image Asset'
+        if: success()
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ env.UPLOAD_URL }}
+          asset_name: 'bloggo-${{ github.run_number }}-linux'
+          asset_path: 'bloggo-${{ github.run_number }}'
+          asset_content_type: application/octet-stream
