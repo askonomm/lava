@@ -111,7 +111,7 @@ jobs:
 
       - name: 'Set Upload URL Env Var'
         run: |
-          echo "::set-env name=UPLOAD_URL::$(cat upload_url.txt)"
+          echo "UPLOAD_URL=$(cat upload_url.txt)" >> $GITHUB_ENV
           
       - name: 'Build Linux Image'
         run: |
