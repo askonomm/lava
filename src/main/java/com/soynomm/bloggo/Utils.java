@@ -1,0 +1,95 @@
+package com.soynomm.bloggo;
+
+import com.soynomm.bloggo.enums.TrimPos;
+import org.commonmark.node.Node;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+/**
+ * A bunch of stand-alone methods that do useful-enough things that
+ * it makes sense to extract them here.
+ *
+ * @author Nomm
+ * @since 1.0
+ */
+public class Utils {
+
+    /**
+     * Transform a given {@code input} string containing date into a RFC 822 date string.
+     *
+     * @param input raw date input (needs to be in yyyy-MM-dd format)
+     */
+    public static String date(String input) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+
+        try {
+            Date date = sdf.parse(input);
+            sdf.applyPattern("EEE, dd MMM yyyy HH:mm:ss Z");
+            return sdf.format(date);
+        } catch(java.text.ParseException e) {
+            return "";
+        }
+    }
+
+    /**
+     * Transforms a given {@code input} string containing date into a desired {@code format}.
+     *
+     * @param input raw date input (needs to be in yyyy-MM-dd format)
+     * @param format SimpleDateFormat date pattern
+     */
+    public static String date(String input, String format) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+
+        try {
+            Date date = sdf.parse(input);
+            sdf.applyPattern(format);
+            return sdf.format(date);
+        } catch(java.text.ParseException e) {
+            return "";
+        }
+    }
+
+    /**
+     * Takes raw {@code markdown} and returns HTML.
+     *
+     * @param markdown raw Markdown string
+     */
+    public static String markdownToHtml(String markdown) {
+        Parser parser = Parser.builder().build();
+        Node document = parser.parse(markdown);
+        HtmlRenderer renderer = HtmlRenderer.builder().build();
+
+        return renderer.render(document);
+    }
+
+    /**
+     * Takes a string {@code input} and trims a {@code trimmedChar} from {@code position}.
+     *
+     * @param input string to be trimmed
+     * @param position either TrimPos.LEFT or TrimPos.RIGHT
+     * @param trimmedChar string character to trim
+     */
+    public static String trimStr(String input, TrimPos position, String trimmedChar) {
+        if (position.equals(TrimPos.LEFT)) {
+            String firstChar = input.substring(0, 1);
+
+            if (firstChar.equals(trimmedChar)) {
+                input = trimStr(input.substring(1), position, trimmedChar);
+            }
+        }
+
+        if (position.equals(TrimPos.RIGHT)) {
+            String lastChar = input.substring(input.length() - 1);
+
+            if (lastChar.equals(trimmedChar)) {
+                input = trimStr(input.substring(0, input.length() - 1), position, trimmedChar);
+            }
+        }
+
+        return input;
+    }
+
+}
