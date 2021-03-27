@@ -114,7 +114,7 @@ jobs:
           
       - name: 'Build Linux Image'
         run: |
-          native-image --report-unsupported-elements-at-runtime --initialize-at-build-time --no-server --no-fallback --allow-incomplete-classpath -jar bloggo-${{ github.run_number }}.jar
+          native-image --report-unsupported-elements-at-runtime --initialize-at-build-time --no-server -jar bloggo-${{ github.run_number }}.jar
           
       - name: 'Publish Linux Image'
         if: success()
@@ -167,7 +167,7 @@ jobs:
           echo "UPLOAD_URL=$(cat upload_url.txt)" >> $GITHUB_ENV
       - name: 'Build Mac OS Image'
         run: |
-          native-image --report-unsupported-elements-at-runtime --initialize-at-build-time --no-server --no-fallback --allow-incomplete-classpath -jar bloggo-${{ github.run_number }}.jar
+          native-image --report-unsupported-elements-at-runtime --initialize-at-build-time --no-server -jar bloggo-${{ github.run_number }}.jar
       - name: 'Publish Mac OS Image'
         uses: actions/upload-artifact@v2-preview
         with:
