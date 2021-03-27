@@ -46,7 +46,7 @@ class Bloggo {
     private void printHelp() {
         if (this.help) {
             String format = "\t%-40s%s%n";
-            System.out.println("Bloggo Static Site Generator " + getClass().getPackage().getSpecificationVersion());
+            System.out.println("Bloggo Static Site Generator");
             System.out.println("\nOptions:");
             System.out.printf(format, "-h, --help", "displays all options");
             System.out.printf(format, "-r <path>, --resources <path>", "path to the resources directory");
