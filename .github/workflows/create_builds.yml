@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Dist
+name: Create builds
 
 # Controls when the action will run. 
 on:
@@ -34,12 +34,12 @@ jobs:
           
       - name: 'Change name of JAR'
         run: |
-          mv target/bloggo-LATEST.jar target/bloggo-${{ github.run_number }}.jar
+          mv target/bloggo-LATEST.jar target/bloggo.jar
       - name: 'Publish JAR'
         uses: actions/upload-artifact@v2-preview
         with:
-          name: 'bloggo-${{ github.run_number }}.jar'
-          path: target/bloggo-${{ github.run_number }}.jar
+          name: 'bloggo.jar'
+          path: target/bloggo.jar
           
       - name: 'Create Release'
         id: create_release
@@ -61,8 +61,8 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         with:
           upload_url: ${{steps.create_release.outputs.upload_url}}
-          asset_path: target/bloggo-${{ github.run_number }}.jar
-          asset_name: bloggo-${{ github.run_number }}.jar
+          asset_path: target/bloggo.jar
+          asset_name: bloggo.jar
           asset_content_type: application/java-archive
           
       - name: 'Write Upload URL To File'
@@ -99,7 +99,7 @@ jobs:
       - name: 'Get JAR Artifact'
         uses: actions/download-artifact@v2-preview
         with:
-          name: 'bloggo-${{ github.run_number }}.jar'
+          name: 'bloggo.jar'
 
       - name: 'Download Release URL'
         uses: actions/download-artifact@v2-preview
@@ -112,14 +112,14 @@ jobs:
           
       - name: 'Build Linux Image'
         run: |
-          native-image --initialize-at-run-time=io.methvin.watchservice.jna.CarbonAPI --report-unsupported-elements-at-runtime --initialize-at-build-time --no-server --no-fallback -jar bloggo-${{ github.run_number }}.jar
+          native-image --initialize-at-run-time=io.methvin.watchservice.jna.CarbonAPI --report-unsupported-elements-at-runtime --initialize-at-build-time --no-server --no-fallback -jar bloggo.jar
           
       - name: 'Publish Linux Image'
         if: success()
         uses: actions/upload-artifact@v2-preview
         with:
-          name: 'bloggo-${{ github.run_number }}-linux'
-          path: 'bloggo-${{ github.run_number }}'
+          name: 'bloggo-linux'
+          path: 'bloggo'
 
       - name: 'Upload Linux Image Asset'
         if: success()
@@ -129,8 +129,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ env.UPLOAD_URL }}
-          asset_name: 'bloggo-${{ github.run_number }}-linux'
-          asset_path: 'bloggo-${{ github.run_number }}'
+          asset_name: 'bloggo-linux'
+          asset_path: 'bloggo'
           asset_content_type: application/octet-stream
           
   build-macos-image:
@@ -153,7 +153,7 @@ jobs:
       - name: 'Get JAR Artifact'
         uses: actions/download-artifact@v2-preview
         with:
-          name: 'bloggo-${{ github.run_number }}.jar'
+          name: 'bloggo.jar'
 
       - name: 'Download Release URL'
         uses: actions/download-artifact@v2-preview
@@ -165,13 +165,13 @@ jobs:
           echo "UPLOAD_URL=$(cat upload_url.txt)" >> $GITHUB_ENV
       - name: 'Build Mac OS Image'
         run: |
-          native-image --initialize-at-run-time=io.methvin.watchservice.jna.CarbonAPI --report-unsupported-elements-at-runtime --initialize-at-build-time --no-server --no-fallback -jar bloggo-${{ github.run_number }}.jar
+          native-image --initialize-at-run-time=io.methvin.watchservice.jna.CarbonAPI --report-unsupported-elements-at-runtime --initialize-at-build-time --no-server --no-fallback -jar bloggo.jar
       - name: 'Publish Mac OS Image'
         if: success()
         uses: actions/upload-artifact@v2-preview
         with:
-          name: 'bloggo-${{ github.run_number }}-macOS'
-          path: 'bloggo-${{ github.run_number }}'
+          name: 'bloggo-macOS'
+          path: 'bloggo'
       - name: 'Upload Mac OS Image Asset'
         if: success()
         id: upload-release-asset
@@ -180,8 +180,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ env.UPLOAD_URL }}
-          asset_name: 'bloggo-${{ github.run_number }}-macOS'
-          asset_path: 'bloggo-${{ github.run_number }}'
+          asset_name: 'bloggo-macOS'
+          asset_path: 'bloggo'
           asset_content_type: application/octet-stream
 
   build-windows-image:
@@ -206,14 +206,14 @@ jobs:
       - name: 'Get JAR Artifact'
         uses: actions/download-artifact@v2-preview
         with:
-          name: 'bloggo-${{ github.run_number }}.jar'
+          name: 'bloggo.jar'
       - name: 'Build Native Image'
         shell: cmd
         env:
           JAVA_HOME: ./graalvm-ce-java11-21.0.0.2
         run: |
           call "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
-          ./graalvm-ce-java11-21.0.0.2/bin/native-image --no-server --no-fallback -H:Name=blogger -jar bloggo-${{ github.run_number }}.jar
+          ./graalvm-ce-java11-21.0.0.2/bin/native-image --no-server --no-fallback -H:Name=blogger -jar bloggo.jar
       - name: 'Get Release URL'
         uses: actions/download-artifact@v2-preview
         with:
@@ -226,8 +226,8 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v2-preview
         with:
-          name: 'bloggo-${{ github.run_number }}-windows.exe'
-          path: 'bloggo-${{ github.run_number }}.exe'
+          name: 'bloggo-windows.exe'
+          path: 'bloggo.exe'
       - name: 'Release Windows Image Asset'
         if: success()
         id: upload-release-asset
@@ -236,6 +236,6 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         with:
           upload_url: ${{env.UPLOAD_URL}}
-          asset_name: 'bloggo-${{ github.run_number }}-windows.exe'
-          asset_path: 'bloggo-${{ github.run_number }}.exe'
+          asset_name: 'bloggo-windows.exe'
+          asset_path: 'bloggo.exe'
           asset_content_type: application/octet-stream
