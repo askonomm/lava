@@ -152,9 +152,6 @@ jobs:
       - name: 'Install Native Image Plugin'
         run: |
           gu install native-image
-      - name: 'Get Version Number'
-        run: |
-          echo "::set-env name=VERSION::$(./gradlew properties -q | grep "version:" | awk '{print $2}')"
       - name: 'Get JAR Artifact'
         uses: actions/download-artifact@v2-preview
         with:
