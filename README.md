@@ -10,9 +10,10 @@ A blog-oriented static site generator.
 - [Usage](#usage)
   - [Directory structure](#directory-structure)
   - [Content files](#content-files)
-    - [Markdown files](#markdown-files)
-    - [Mustache files](#mustache-files)
+    - [Markdown](#markdown)
+    - [Mustache](#mustache)
   - [Site layout](#site-layout)
+  - [Template data](#template-data)
   - [Site configuration](#site-configuration)
   - [Command-line usage](#command-line-usage)
 - [Example sites](#example-sites)
@@ -59,15 +60,19 @@ To be written.
 
 To be written.
 
-#### Markdown files
+#### Markdown
 
 To be written.
 
-#### Mustache files
+#### Mustache
 
 To be written.
 
 ### Site layout
+
+To be written.
+
+### Template data
 
 To be written.
 
