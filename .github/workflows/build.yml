@@ -203,7 +203,7 @@ jobs:
           graalvm-ce-java11-21.0.0.2\bin\gu.cmd install native-image
       - name: 'Set up Visual C Build Tools Workload for Visual Studio 2017 Build Tools'
         run: |
-          choco install visualstudio2017-workload-vctools
+          choco install visualstudio2017-workload-vctools && choco upgrade -y visualstudio2017-workload-vctools
         shell: bash
       - name: 'Get JAR Artifact'
         uses: actions/download-artifact@v2-preview
