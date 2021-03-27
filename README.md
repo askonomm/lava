@@ -2,6 +2,21 @@
 
 A blog-oriented static site generator.
 
+- [Installation](#installation)
+  - [Linux](#linux)
+  - [macOS](#macos)
+  - [Windows](#windows)
+- [Updating](#updating)
+- [Usage](#usage)
+  - [Directory structure](#directory-structure)
+  - [Content files](#content-files)
+    - [Markdown files](#markdown-files)
+    - [Mustache files](#mustache-files)
+  - [Site layout](#site-layout)
+  - [Site configuration](#site-configuration)
+  - [Command-line usage](#command-line-usage)
+- [Example sites](#example-sites)
+
 ## Installation
 
 ### Linux
@@ -31,3 +46,39 @@ To run it on any platform that has Java 11, download the `bloggo-{version}.jar` 
 ## Updating
 
 To update any previous version of Bloggo you might have, simply overwrite your existing Bloggo executable with a new one.
+
+## Usage
+
+To be written.
+
+### Directory structure
+
+To be written.
+
+### Content files
+
+To be written.
+
+#### Markdown files
+
+To be written.
+
+#### Mustache files
+
+To be written.
+
+### Site layout
+
+To be written.
+
+### Site configuration
+
+To be written.
+
+### Command-line usage
+
+To be written.
+
+## Example sites
+
+- [Nomm](https://nomm.xyz) ([Github repository](https://github.com/soynomm/nomm.xyz))
