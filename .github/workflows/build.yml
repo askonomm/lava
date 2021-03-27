@@ -52,7 +52,7 @@ jobs:
           tag_name: v${{ github.run_number }}
           release_name: Release ${{ github.run_number }}
           body: |
-            ...
+            This release is created automatically every time a commit is made to the master branch.
           draft: false
           prerelease: false
           
