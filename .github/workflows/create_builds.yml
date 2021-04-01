@@ -170,7 +170,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v2-preview
         with:
-          name: 'bloggo-macOS'
+          name: 'bloggo-mac'
           path: 'bloggo'
       - name: 'Upload Mac OS Image Asset'
         if: success()
@@ -180,7 +180,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ env.UPLOAD_URL }}
-          asset_name: 'bloggo-macOS'
+          asset_name: 'bloggo-mac'
           asset_path: 'bloggo'
           asset_content_type: application/octet-stream
 
@@ -226,7 +226,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v2-preview
         with:
-          name: 'bloggo-windows.exe'
+          name: 'bloggo.exe'
           path: 'bloggo.exe'
       - name: 'Release Windows Image Asset'
         if: success()
@@ -236,6 +236,6 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         with:
           upload_url: ${{env.UPLOAD_URL}}
-          asset_name: 'bloggo-windows.exe'
+          asset_name: 'bloggo.exe'
           asset_path: 'bloggo.exe'
           asset_content_type: application/octet-stream
