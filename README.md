@@ -99,11 +99,11 @@ Markdown content file data is available to you via `{{metakey}}` Mustache templa
 available via the following Mustache variables:
 
 - `{{title}}` - Renders the meta-data title value
-- `{{date}}` - Renders the default date format of `EEE, dd MMM yyyy HH:mm:ss Z`
+- `{{date}}` - Renders the default date in the format of `EEE, dd MMM yyyy HH:mm:ss Z`
 - `{{date_unparsed}}` - Renders the date as it is in the content file
-- `{{pretty_date}}` - Renders the date format of `MMM dd, yyyy`
-- `{{pretty_date_without_year}}` - Renders the date format of `MMM dd`
-- `{{{entry}}}` - Renders the entry-block Markdown into HTML.
+- `{{pretty_date}}` - Renders the date in the format of `MMM dd, yyyy`
+- `{{pretty_date_without_year}}` - Renders the date in the format of `MMM dd`
+- `{{{entry}}}` - Renders the entry-block Markdown into HTML. Yes, needs 3 brackets.
 
 #### Mustache
 
@@ -113,7 +113,33 @@ and thus enables (and encourages) an entirely new layout for each Mustache conte
 
 ### Template data
 
-To be written.
+In all of your Mustache files (including content files and site layout), the following data is available for use:
+
+#### `is_home`
+
+Returns true if the user visits the home page of the site.
+
+Example usage:
+
+```mustache
+{{#is_home}}
+<p>Hi! Welcome to my website.</p>
+{{/is_home}}
+```
+
+#### `is_post`
+
+Returns true if the user visits any of the content files.
+
+Example usage:
+
+```mustache
+{{#is_post}}
+  <h2>{{title}}></h2>
+  <div class="date">{{pretty_date}}</div>
+  <div class="entry">{{{entry}}}</div>
+{{/is_post}}
+```
 
 ### Site configuration
 
