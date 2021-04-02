@@ -50,14 +50,14 @@ To update any previous version you might have, simply overwrite/replace your exi
 
 ## Usage
 
-Using Bloggo is straight-forward in that you just need to have a resources directory that contains everything your static
+Using Bloggo is straight-forward in that you just need to have a resources' directory that contains everything your static
 website needs, like a `config.json` file for configuration, a `layout.mustache` file for the website template as well as a `content` 
-directory inside the resources directory for all of the content files that make up your website.
+directory inside the resources' directory for all the content files that make up your website.
 
 ### Directory structure
 
-By default Bloggo is looking for a resources directory called `resources` (you can specify any other directory by calling `bloggo -r {directory}` or `bloggo --resources {directory}`).
-The resources directory structure needs to look like this:
+By default, Bloggo is looking for a resources' directory called `resources` (you can specify any other directory by calling `bloggo -r {directory}` or `bloggo --resources {directory}`).
+The resources' directory structure needs to look like this:
 
 - resources/
   - content/
@@ -66,11 +66,19 @@ The resources directory structure needs to look like this:
       - john.md
   - config.json
   - layout.mustache
+  
+### Site layout
+
+The site layout of your static website lives inside a Mustache template file `layout.mustache` in the root of the resources' directory.
+That layout file has all the [template data](#template-data) available to it just like all Mustache content files do, and just
+like all Mustache content files, it also can have any structure you want it to have. 
+
+You can check out [my own website' layout.mustache](https://github.com/soynomm/nomm.xyz/layout.mustache) for an example use-case.
 
 ### Content files
 
-All of the content files reside inside the `content` directory. There are two types of content files - Markdown (file.md) and Mustache (file.mustache).
-Markdown content files are meant for static content, such as blog posts and pages. Mustache 
+All the content files reside inside the `content` directory. There are two types of content files - Markdown ({filename}.md) and Mustache ({filename}.mustache).
+Markdown content files are meant for static content, such as blog posts and pages. Mustache
 content files are meant for custom, dynamic pages.
 
 #### Markdown
@@ -86,16 +94,22 @@ date: 2020-12-01
 Hi there, world.
 ```
 
-Meta-data of each Markdown content file goes in-between 3 hyphens and the entry of the content file itself will go below the meta-data.
+Meta-data of each Markdown content file goes in-between 3 hyphens, and the entry of the content file itself will go below the meta-data.
+Markdown content file data is available to you via `{{metakey}}` Mustache templating, for example the above content file would be
+available via the following Mustache variables:
+
+- `{{title}}` - Renders the meta-data title value
+- `{{date}}` - Renders the default date format of `EEE, dd MMM yyyy HH:mm:ss Z`
+- `{{date_unparsed}}` - Renders the date as it is in the content file
+- `{{pretty_date}}` - Renders the date format of `MMM dd, yyyy`
+- `{{pretty_date_without_year}}` - Renders the date format of `MMM dd`
+- `{{{entry}}}` - Renders the entry-block Markdown into HTML.
 
 #### Mustache
 
-A Mustache content file can have any structure you want. You can check example content files of [my own website](https://github.com/soynomm/nomm.xyz) to see
-what things I've made with Mustache content files for examples.
-
-### Site layout
-
-To be written.
+A Mustache content file can have any structure you want. You can check out [my own website content files](https://github.com/soynomm/nomm.xyz) for example use-cases. 
+It's important to note that unlike a Markdown content file, a Mustache content file does not use site layout 
+and thus enables (and encourages) an entirely new layout for each Mustache content file.
 
 ### Template data
 
