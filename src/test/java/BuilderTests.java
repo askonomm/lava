@@ -1,15 +1,14 @@
 import static org.junit.jupiter.api.Assertions.*;
 import com.soynomm.bloggo.Builder;
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BuilderTests {
 
     @Test
     public void testContents() {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+
         String rootDir = "src/test/resources/content";
         String contentDir = "src/test/resources/content";
         String siteUrl = "https://example.com";
@@ -17,7 +16,7 @@ public class BuilderTests {
         List<Map<String, String>> expected = new ArrayList<>();
 
         Map<String, String> expectedItem1 = new HashMap<>();
-        expectedItem1.put("date", "Sat, 10 Oct 2020 00:00:00 -0300");
+        expectedItem1.put("date", "Sat, 10 Oct 2020 00:00:00 +0000");
         expectedItem1.put("entry", "<p>Hi there.</p>\n");
         expectedItem1.put("path", "/blog/hello-world");
         expectedItem1.put("pretty_date_without_year", "Oct 10");
@@ -28,7 +27,7 @@ public class BuilderTests {
         expected.add(expectedItem1);
 
         Map<String, String> expectedItem2 = new HashMap<>();
-        expectedItem2.put("date", "Mon, 05 Oct 2020 00:00:00 -0300");
+        expectedItem2.put("date", "Mon, 05 Oct 2020 00:00:00 +0000");
         expectedItem2.put("entry", "<p>Bye there.</p>\n");
         expectedItem2.put("path", "/blog/bye-world");
         expectedItem2.put("pretty_date_without_year", "Oct 05");
@@ -61,6 +60,8 @@ public class BuilderTests {
 
     @Test
     public void testPosts() {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+
         String rootDir = "src/test/resources/content";
         String contentDir = "src/test/resources/content/blog";
         String siteUrl = "https://example.com";
@@ -69,12 +70,12 @@ public class BuilderTests {
 
         Map<String, Object> year = new HashMap<>();
         year.put("year", "2020");
-        year.put("last_update", "Sat, 10 Oct 2020 00:00:00 -0300");
+        year.put("last_update", "Sat, 10 Oct 2020 00:00:00 +0000");
 
         List<Map<String, String>> entries = new ArrayList<>();
 
         Map<String, String> entry1 = new HashMap<>();
-        entry1.put("date", "Sat, 10 Oct 2020 00:00:00 -0300");
+        entry1.put("date", "Sat, 10 Oct 2020 00:00:00 +0000");
         entry1.put("entry", "<p>Hi there.</p>\n");
         entry1.put("path", "/blog/hello-world");
         entry1.put("pretty_date_without_year", "Oct 10");
@@ -85,7 +86,7 @@ public class BuilderTests {
         entries.add(entry1);
 
         Map<String, String> entry2 = new HashMap<>();
-        entry2.put("date", "Mon, 05 Oct 2020 00:00:00 -0300");
+        entry2.put("date", "Mon, 05 Oct 2020 00:00:00 +0000");
         entry2.put("entry", "<p>Bye there.</p>\n");
         entry2.put("path", "/blog/bye-world");
         entry2.put("pretty_date_without_year", "Oct 05");
