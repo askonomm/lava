@@ -1,12 +1,16 @@
 import com.soynomm.bloggo.enums.TrimPos;
 import com.soynomm.bloggo.Utils;
 import org.junit.jupiter.api.Test;
+
+import java.util.TimeZone;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UtilsTests {
 
     @Test
     public void testDateWithoutFormat() {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
         String date = "2021-03-22";
         String expected = "Mon, 22 Mar 2021 00:00:00 +0000";
         String result = Utils.date(date);
@@ -16,6 +20,7 @@ public class UtilsTests {
 
     @Test
     public void testDateWithoutFormatShortMonth() {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
         String date = "2021-3-22";
         String expected = "Mon, 22 Mar 2021 00:00:00 +0000";
         String result = Utils.date(date);
@@ -25,6 +30,7 @@ public class UtilsTests {
 
     @Test
     public void testDateWithoutFormatInvalid() {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
         String date = "03-22-2021";
         String expected = "Sun, 13 Apr 0010 00:00:00 +0000";
         String result = Utils.date(date);

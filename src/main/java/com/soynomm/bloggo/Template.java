@@ -20,7 +20,7 @@ import java.util.Map;
  * @author Nomm
  * @since 1.0
  */
-class Template {
+public class Template {
     String template;
     String templatePath;
 
@@ -44,28 +44,28 @@ class Template {
      * @param data data to pass to the Mustache template
      */
     public String compile(Map<String, Object> data) {
-        StringBuilderWriter writer = new StringBuilderWriter();
-        MustacheFactory mf = new DefaultMustacheFactory();
-
-        try {
-            Mustache mustache = mf.compile(new StringReader(this.template), "");
-            mustache.execute(writer, data);
-
-            return writer.toString();
-        } catch(MustacheException e) {
-            System.out.println(Feedback.TEMP_2(this.templatePath, e.getMessage()));
-
-            return "";
-        }
+        return Template.compileStringToMustache(this.template, data);
     }
 
     /**
      * Compiles a Mustache string {@code template} with {@code data} into
      * a HTML string, which it then returns.
      *
+     * @param template template string to compile
      * @param data data to pass to the Mustache template
      */
     public static String compile(String template, Map<String, Object> data) {
+        return Template.compileStringToMustache(template, data);
+    }
+
+    /**
+     * Compiles a Mustache string {@code template} with {@code data}
+     * into a HTML string, which it then returns.
+     *
+     * @param template template string to compile
+     * @param data data to pass to the Mustache template
+     */
+    private static String compileStringToMustache(String template, Map<String, Object> data) {
         StringBuilderWriter writer = new StringBuilderWriter();
         MustacheFactory mf = new DefaultMustacheFactory();
 
