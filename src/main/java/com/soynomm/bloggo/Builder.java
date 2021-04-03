@@ -14,16 +14,16 @@ import java.util.*;
  * @author Nomm
  * @since 1.0
  */
-class Builder {
+public class Builder {
 
-    String root_dir;
-    String content_dir;
+    String rootDir;
+    String contentDir;
     List<Map<String, String>> contents;
 
-    Builder(String root_dir, String content_dir, String siteUrl) {
-        this.root_dir = root_dir;
-        this.content_dir = content_dir;
-        this.contents = this.buildContents(this.buildPaths(content_dir), siteUrl);
+    public Builder(String rootDir, String contentDir, String siteUrl) {
+        this.rootDir = rootDir;
+        this.contentDir = contentDir;
+        this.contents = this.buildContents(this.buildPaths(contentDir), siteUrl);
     }
 
     /**
@@ -88,7 +88,7 @@ class Builder {
         if (pathList != null) {
             for (String item : pathList) {
                 String completePath = fromPath + "/" + item;
-                String relativePath = completePath.replace(this.root_dir, "");
+                String relativePath = completePath.replace(this.rootDir, "");
                 Path path = Paths.get(completePath);
 
                 if (Files.isRegularFile(path) && (item.endsWith(".md")) || item.endsWith(".mustache")) {
@@ -119,7 +119,7 @@ class Builder {
 
         for (String item : paths) {
             try {
-                String fileContent = new String(Files.readAllBytes(Paths.get(this.root_dir + item)));
+                String fileContent = new String(Files.readAllBytes(Paths.get(this.rootDir + item)));
                 Map<String, String> content = new HashMap<>();
 
                 /* In the case it's a mustache file, we don't actually

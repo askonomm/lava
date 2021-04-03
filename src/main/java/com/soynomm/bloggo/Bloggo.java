@@ -20,8 +20,8 @@ import java.util.Map;
  */
 class Bloggo {
 
-    private final String resources_dir;
-    private final String out_dir;
+    private final String resourcesDir;
+    private final String outDir;
     private final boolean watch;
     private final boolean verbose;
     private final boolean help;
@@ -33,8 +33,8 @@ class Bloggo {
     public Bloggo(String[] args) {
         ArgParser argParser = new ArgParser(args);
 
-        this.resources_dir = Utils.trimStr(argParser.get("-r", "--resources", "./resources"), TrimPos.RIGHT, "/");
-        this.out_dir = Utils.trimStr(argParser.get("-o", "--out", "./public"), TrimPos.RIGHT, "/");
+        this.resourcesDir = Utils.trimStr(argParser.get("-r", "--resources", "./resources"), TrimPos.RIGHT, "/");
+        this.outDir = Utils.trimStr(argParser.get("-o", "--out", "./public"), TrimPos.RIGHT, "/");
         this.watch = argParser.get("-w", "--watch", false);
         this.verbose = argParser.get("-v", "--verbose", false);
         this.help = argParser.get("-h", "--help", false);
@@ -61,7 +61,7 @@ class Bloggo {
      * Makes sure config.json has everything we need
      */
     private void verifyConfiguration() {
-        this.config = new Config(this.resources_dir + "/config.json");
+        this.config = new Config(this.resourcesDir + "/config.json");
 
         if (this.config.get("site_url").equals("")) {
             System.out.println(Feedback.CONF_1);
@@ -84,13 +84,13 @@ class Bloggo {
      */
     private void initiateBuilders() {
         this.contentBuilder = new Builder(
-                this.resources_dir + "/content",
-                this.resources_dir + "/content",
+                this.resourcesDir + "/content",
+                this.resourcesDir + "/content",
                 Utils.trimStr(config.get("site_url"), TrimPos.RIGHT, "/"));
 
         this.blogBuilder = new Builder(
-                this.resources_dir + "/content",
-                this.resources_dir + "/content/blog",
+                this.resourcesDir + "/content",
+                this.resourcesDir + "/content/blog",
                 Utils.trimStr(this.config.get("site_url"), TrimPos.RIGHT, "/"));
     }
 
@@ -112,7 +112,7 @@ class Bloggo {
      */
     private void cleanOutDir() {
         try {
-            FileUtils.deleteDirectory(new File(this.out_dir));
+            FileUtils.deleteDirectory(new File(this.outDir));
         } catch(java.io.IOException e) {
             System.out.println(Feedback.FILE_4);
             System.exit(1);
@@ -125,8 +125,8 @@ class Bloggo {
     private void generateContent() {
         if (this.verbose) System.out.println(Feedback.VERB_4);
 
-        Generator generator = new Generator(this.out_dir);
-        Template template = new Template(this.resources_dir + "/layout.mustache");
+        Generator generator = new Generator(this.outDir);
+        Template template = new Template(this.resourcesDir + "/layout.mustache");
         Map<String, Object> data = new HashMap<>();
         data.put("is_home", false);
         data.put("is_post", true);
@@ -153,8 +153,8 @@ class Bloggo {
     private void generateHome() {
         if (this.verbose) System.out.println(Feedback.VERB_6);
 
-        Generator generator = new Generator(this.out_dir);
-        Template template = new Template(this.resources_dir + "/layout.mustache");
+        Generator generator = new Generator(this.outDir);
+        Template template = new Template(this.resourcesDir + "/layout.mustache");
         Map<String, Object> data = new HashMap<>();
         data.put("is_home", true);
         data.put("is_post", false);
@@ -172,8 +172,8 @@ class Bloggo {
         if (this.verbose) System.out.println(Feedback.VERB_7);
 
         try {
-            File from = new File(this.resources_dir + "/assets");
-            File to = new File(this.out_dir + "/assets");
+            File from = new File(this.resourcesDir + "/assets");
+            File to = new File(this.outDir + "/assets");
             FileUtils.copyDirectory(from, to);
         } catch(java.io.IOException e) {
             System.out.println(Feedback.FILE_6);
@@ -208,7 +208,7 @@ class Bloggo {
         if (this.watch) {
             try {
                 DirectoryWatcher watcher = DirectoryWatcher.builder()
-                        .path(Paths.get(this.resources_dir))
+                        .path(Paths.get(this.resourcesDir))
                         .listener(event -> this.generate())
                         .fileHasher(FileHasher.LAST_MODIFIED_TIME)
 

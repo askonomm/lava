@@ -16,11 +16,11 @@ import java.nio.file.Paths;
  * @author Nomm
  * @since 1.0
  */
-class Generator {
+public class Generator {
 
     String out_dir;
 
-    Generator(String out_dir) {
+    public Generator(String out_dir) {
         this.out_dir = out_dir;
     }
 
