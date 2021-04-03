@@ -107,12 +107,20 @@ available via the following Mustache variables:
 - `{{url}}` - renders the fully-qualified URL of the content item (https://example.com/hello-world/)
 - `{{path}}` - renders the content item's path (/hello-world/)
 
+The filename determines the eventual path of the content item. For example a file with a name of `hello-world.md` will be 
+compiled into `/hello-world/index.html`, and thus be accessible via the URL https://example.com/hello-world/.
+
 #### Mustache
 
 A Mustache content file can have any structure you want. You can check out [my own website content files](https://github.com/soynomm/nomm.xyz) for example use-cases. 
 
 It's important to note that unlike a Markdown content file, a Mustache content file does not use site layout 
 and thus enables (and encourages) an entirely new layout for each Mustache content file.
+
+Just like in the case of a Markdown content file, the filename of Mustache template file also determines the eventual path of the content item. 
+But unlike a Markdown content file, a Mustache content file will not be compiled into a HTML file. Instead, it will be 
+compiled into whatever format you want. For example a file with a name of `feed.xml.mustache` will be compiled into `feed.xml`, 
+thus allowing you to determine the file format.
 
 ### Template data
 
