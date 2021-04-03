@@ -69,7 +69,7 @@ The resources' directory structure needs to look like this:
   
 ### Site layout
 
-The site layout of your static website lives inside a Mustache template file `layout.mustache` in the root of the resources' directory.
+The site layout of your static website lives inside a [Mustache](https://mustache.github.io/mustache.5.html) template file `layout.mustache` in the root of the resources' directory.
 That layout file has all the [template data](#template-data) available to it just like all Mustache content files do, and just
 like all Mustache content files, it also can have any structure you want it to have. 
 
@@ -98,14 +98,14 @@ Meta-data of each Markdown content file goes in-between 3 hyphens, and the entry
 Markdown content file data is available to you via `{{metakey}}` Mustache templating, for example the above content file would be
 available via the following Mustache variables:
 
-- `{{title}}` - Renders the meta-data title value
-- `{{date}}` - Renders the default date in the format of `EEE, dd MMM yyyy HH:mm:ss Z`
-- `{{date_unparsed}}` - Renders the date as it is in the content file
-- `{{pretty_date}}` - Renders the date in the format of `MMM dd, yyyy`
-- `{{pretty_date_without_year}}` - Renders the date in the format of `MMM dd`
-- `{{{entry}}}` - Renders the entry-block Markdown into HTML. Yes, needs 3 brackets.
-- `{{url}}` - Renders the fully-qualified URL of the content item (https://example.com/hello-world/)
-- `{{path}}` - Renders the content item's path (/hello-world/)
+- `{{title}}` - renders the meta-data title value
+- `{{date}}` - renders the default date in the format of `EEE, dd MMM yyyy HH:mm:ss Z`
+- `{{date_unparsed}}` - renders the date as it is in the content file
+- `{{pretty_date}}` - renders the date in the format of `MMM dd, yyyy`
+- `{{pretty_date_without_year}}` - renders the date in the format of `MMM dd`
+- `{{{entry}}}` - renders the entry-block Markdown into HTML. Yes, needs 3 brackets.
+- `{{url}}` - renders the fully-qualified URL of the content item (https://example.com/hello-world/)
+- `{{path}}` - renders the content item's path (/hello-world/)
 
 #### Mustache
 
@@ -173,11 +173,19 @@ Returns the date of the last created content item inside the `content/blog` dire
 
 ### Site configuration
 
-To be written.
+Site configuration lives inside the `config.json` file in the root of the resources' directory. It can contain anything you'd 
+like to have there, but these three things are required:
+
+- `site_url` - URL of your website (example: https://example.com)
+- `site_title` - title of your website
+- `site_description` - description of your website
+
+All the items inside the `config.json` file are also available globally in all of your Mustache template files, 
+including `layout.mustache` as well as any content file with the `.mustache` file extension.
 
 ### Command-line usage
 
-To be written.
+To see the full CLI usage of Bloggo, run Bloggo with `bloggo -h` or `bloggo --help`. 
 
 ## Example sites
 
