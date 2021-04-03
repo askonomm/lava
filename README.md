@@ -104,10 +104,13 @@ available via the following Mustache variables:
 - `{{pretty_date}}` - Renders the date in the format of `MMM dd, yyyy`
 - `{{pretty_date_without_year}}` - Renders the date in the format of `MMM dd`
 - `{{{entry}}}` - Renders the entry-block Markdown into HTML. Yes, needs 3 brackets.
+- `{{url}}` - Renders the fully-qualified URL of the content item (https://example.com/hello-world/)
+- `{{path}}` - Renders the content item's path (/hello-world/)
 
 #### Mustache
 
 A Mustache content file can have any structure you want. You can check out [my own website content files](https://github.com/soynomm/nomm.xyz) for example use-cases. 
+
 It's important to note that unlike a Markdown content file, a Mustache content file does not use site layout 
 and thus enables (and encourages) an entirely new layout for each Mustache content file.
 
@@ -127,6 +130,9 @@ Example usage:
 {{/is_home}}
 ```
 
+**Note:** this will never return true when used in a Mustache content file, because content files will never be 
+shown on the home page.
+
 #### `is_post`
 
 Returns true if the user visits any of the content files.
@@ -140,6 +146,30 @@ Example usage:
   <div class="entry">{{{entry}}}</div>
 {{/is_post}}
 ```
+
+#### `posts`
+
+Returns a collection of content items inside the `content/blog` directory that you can use for looping.
+
+Example usage:
+
+```mustache
+<ul class="posts">
+{{#posts}} 
+    <li class="year">{{year}}</li>
+    {{#entries}}
+      <li>
+          <h3><a href="{{url}}" title="{{title}}">{{title}}</a></h3>
+          <div class="date">{{pretty_date_without_year}}</div>
+      </li>
+    {{/entries}}
+{{/posts}}
+</ul>
+```
+
+#### `last_update`
+
+Returns the date of the last created content item inside the `content/blog` directory in `EEE, dd MMM yyyy HH:mm:ss Z` format.
 
 ### Site configuration
 
