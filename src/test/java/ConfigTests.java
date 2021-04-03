@@ -9,7 +9,6 @@ public class ConfigTests {
     public void testCorrectConfig() {
         Config config = new Config("src/test/resources/config.json");
         HashMap<String, String> expected = new HashMap<>();
-
         expected.put("site_url", "https://website.com");
         expected.put("site_title", "Site Title");
         expected.put("site_description", "Site Description");
