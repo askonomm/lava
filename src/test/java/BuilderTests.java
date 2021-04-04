@@ -44,7 +44,7 @@ public class BuilderTests {
         expectedItem3.put("url", "https://example.com/test-page");
         expected.add(expectedItem3);
 
-        assertEquals(expected, builder.getContents());
+        assertTrue(expected.containsAll(builder.getContents()) && builder.getContents().containsAll(expected));
     }
 
     @Test
@@ -99,7 +99,7 @@ public class BuilderTests {
         year.put("entries", entries);
 
         expected.add(year);
-
-        assertEquals(expected, builder.getPosts());
+        
+        assertTrue(expected.containsAll(builder.getPosts()) && builder.getPosts().containsAll(expected));
     }
 }
