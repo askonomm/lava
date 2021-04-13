@@ -1,7 +1,7 @@
 # Bloggo
 
 A blog-oriented static site generator that supports static content in the form of Markdown files as well as 
-dynamic content in the form of Mustache templates, allowing you to create flexible websites.
+dynamic content in the form of Handlebars templates, allowing you to create flexible websites.
 
 - [Installation](#installation)
   - [Linux](#linux)
@@ -12,7 +12,7 @@ dynamic content in the form of Mustache templates, allowing you to create flexib
   - [Directory structure](#directory-structure)
   - [Content files](#content-files)
     - [Markdown](#markdown)
-    - [Mustache](#mustache)
+    - [Handlebars](#handlebars)
   - [Site layout](#site-layout)
   - [Template data](#template-data)
   - [Site configuration](#site-configuration)
@@ -51,7 +51,7 @@ To update any previous version you might have, simply overwrite/replace your exi
 ## Usage
 
 Using Bloggo is straight-forward in that you just need to have a resources' directory that contains everything your static
-website needs, like a `config.json` file for configuration, a `layout.mustache` file for the website template as well as a `content` 
+website needs, like a `config.json` file for configuration, a `layout.hbs` file for the website template as well as a `content` 
 directory inside the resources' directory for all the content files that make up your website.
 
 ### Directory structure
@@ -65,20 +65,20 @@ The resources' directory structure needs to look like this:
     - author/
       - john.md
   - config.json
-  - layout.mustache
+  - layout.hbs
   
 ### Site layout
 
-The site layout of your static website lives inside a [Mustache](https://mustache.github.io/mustache.5.html) template file `layout.mustache` in the root of the resources' directory.
-That layout file has all the [template data](#template-data) available to it just like all Mustache content files do, and just
-like all Mustache content files, it also can have any structure you want it to have. 
+The site layout of your static website lives inside a [Handlebars](https://handlebarsjs.com) template file `layout.hbs` in the root of the resources' directory.
+That layout file has all the [template data](#template-data) available to it just like all Handlebars content files do, and just
+like all Handlebars content files, it also can have any structure you want it to have. 
 
-You can check out [my own website' layout.mustache](https://github.com/soynomm/nomm.xyz/layout.mustache) for an example use-case.
+You can check out [my own website' layout.hbs](https://github.com/soynomm/nomm.xyz/layout.hbs) for an example use-case.
 
 ### Content files
 
-All the content files reside inside the `content` directory. There are two types of content files - Markdown ({filename}.md) and Mustache ({filename}.mustache).
-Markdown content files are meant for static content, such as blog posts and pages. Mustache
+All the content files reside inside the `content` directory. There are two types of content files - Markdown ({filename}.md) and Handlebars ({filename}.hbs).
+Markdown content files are meant for static content, such as blog posts and pages. Handlebars
 content files are meant for custom, dynamic pages.
 
 #### Markdown
@@ -95,8 +95,8 @@ Hi there, world.
 ```
 
 Meta-data of each Markdown content file goes in-between 3 hyphens, and the entry of the content file itself will go below the meta-data.
-Markdown content file data is available to you via `{{metakey}}` Mustache templating, for example the above content file would be
-available via the following Mustache variables:
+Markdown content file data is available to you via `{{metakey}}` Handlebars templating, for example the above content file would be
+available via the following variables in your Handlebars templates:
 
 - `{{title}}` - renders the meta-data title value
 - `{{date}}` - renders the default date in the format of `EEE, dd MMM yyyy HH:mm:ss Z`
@@ -110,21 +110,21 @@ available via the following Mustache variables:
 The filename determines the eventual path of the content item. For example a file with a name of `hello-world.md` will be 
 compiled into `/hello-world/index.html`, and thus be accessible via the URL https://example.com/hello-world/.
 
-#### Mustache
+#### Handlebars
 
-A Mustache content file can have any structure you want. You can check out [my own website content files](https://github.com/soynomm/nomm.xyz) for example use-cases. 
+A Handlebars content file can have any structure you want. You can check out [my own website content files](https://github.com/soynomm/nomm.xyz) for example use-cases. 
 
-It's important to note that unlike a Markdown content file, a Mustache content file does not use site layout 
-and thus enables (and encourages) an entirely new layout for each Mustache content file.
+It's important to note that unlike a Markdown content file, a Handlebars content file does not use site layout 
+and thus enables (and encourages) an entirely new layout for each Handlebars content file.
 
-Just like in the case of a Markdown content file, the filename of Mustache template file also determines the eventual path of the content item. 
-But unlike a Markdown content file, a Mustache content file will not be compiled into a HTML file. Instead, it will be 
-compiled into whatever format you want. For example a file with a name of `feed.xml.mustache` will be compiled into `feed.xml`, 
+Just like in the case of a Markdown content file, the filename of Handlebars template file also determines the eventual path of the content item. 
+But unlike a Markdown content file, a Handlebars content file will not be compiled into a HTML file. Instead, it will be 
+compiled into whatever format you want. For example a file with a name of `feed.xml.hbs` will be compiled into `feed.xml`, 
 thus allowing you to determine the file format.
 
 ### Template data
 
-In all of your Mustache files (including content files and site layout), the following data is available for use:
+In all of your Handlebars files (including content files and site layout), the following data is available for use:
 
 #### `is_home`
 
@@ -132,13 +132,13 @@ Returns true if the user visits the home page of the site.
 
 Example usage:
 
-```mustache
+```handlebars
 {{#is_home}}
 <p>Hi! Welcome to my website.</p>
 {{/is_home}}
 ```
 
-**Note:** this will never return true when used in a Mustache content file, because content files will never be 
+**Note:** this will never return true when used in a Handlebars content file, because content files will never be 
 shown on the home page.
 
 #### `is_post`
@@ -147,7 +147,7 @@ Returns true if the user visits any of the content files.
 
 Example usage:
 
-```mustache
+```handlebars
 {{#is_post}}
   <h2>{{title}}></h2>
   <div class="date">{{pretty_date}}</div>
@@ -161,7 +161,7 @@ Returns a collection of content items inside the `content/blog` directory that y
 
 Example usage:
 
-```mustache
+```handlebars
 <ul class="posts">
 {{#posts}} 
     <li class="year">{{year}}</li>
@@ -188,8 +188,8 @@ like to have there, but these three things are required:
 - `site_title` - title of your website
 - `site_description` - description of your website
 
-All the items inside the `config.json` file are also available globally in all of your Mustache template files, 
-including `layout.mustache` as well as any content file with the `.mustache` file extension.
+All the items inside the `config.json` file are also available globally in all of your Handlebars template files, 
+including `layout.hbs` as well as any content file with the `.hbs` file extension.
 
 ### Command-line usage
 
