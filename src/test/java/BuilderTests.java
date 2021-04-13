@@ -99,7 +99,8 @@ public class BuilderTests {
         year.put("entries", entries);
 
         expected.add(year);
-        
+
         assertTrue(expected.containsAll(builder.getPosts()) && builder.getPosts().containsAll(expected));
     }
+
 }
