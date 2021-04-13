@@ -1,5 +1,6 @@
 package com.soynomm.bloggo;
 
+import com.github.jknack.handlebars.Handlebars;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheException;
@@ -44,7 +45,7 @@ public class Template {
      * @param data data to pass to the Mustache template
      */
     public String compile(Map<String, Object> data) {
-        return Template.compileStringToMustache(this.template, data);
+        return Template.compileStringToHandlebars(this.template, data);
     }
 
     /**
@@ -55,28 +56,22 @@ public class Template {
      * @param data data to pass to the Mustache template
      */
     public static String compile(String template, Map<String, Object> data) {
-        return Template.compileStringToMustache(template, data);
+        return Template.compileStringToHandlebars(template, data);
     }
 
     /**
-     * Compiles a Mustache string {@code template} with {@code data}
+     * Compiles a Handlebars string {@code template} with {@code data}
      * into a HTML string, which it then returns.
      *
      * @param template template string to compile
-     * @param data data to pass to the Mustache template
+     * @param data data to pass to the Handlebars template
      */
-    private static String compileStringToMustache(String template, Map<String, Object> data) {
-        StringBuilderWriter writer = new StringBuilderWriter();
-        MustacheFactory mf = new DefaultMustacheFactory();
+    private static String compileStringToHandlebars(String template, Map<String, Object> data) {
+        Handlebars handlebars = new Handlebars();
 
         try {
-            Mustache mustache = mf.compile(new StringReader(template), "");
-            mustache.execute(writer, data);
-
-            return writer.toString();
-        } catch(MustacheException e) {
-            System.out.println(Feedback.TEMP_2("", e.getMessage()));
-
+            return handlebars.compileInline(template).apply(data);
+        } catch(Exception e) {
             return "";
         }
     }

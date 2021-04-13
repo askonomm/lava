@@ -91,7 +91,7 @@ public class Builder {
                 String relativePath = completePath.replace(this.rootDir, "");
                 Path path = Paths.get(completePath);
 
-                if (Files.isRegularFile(path) && (item.endsWith(".md")) || item.endsWith(".mustache")) {
+                if (Files.isRegularFile(path) && (item.endsWith(".md")) || item.endsWith(".hbs")) {
                     paths.add(relativePath);
                 }
 
@@ -126,9 +126,9 @@ public class Builder {
                  * want to do any of the magic that we do with a Markdown
                  * file.
                  */
-                if (item.endsWith(".mustache")) {
+                if (item.endsWith(".hbs")) {
                     content.put("content", fileContent);
-                    content.put("path", item.replace(".mustache", ""));
+                    content.put("path", item.replace(".hbs", ""));
 
                 }
 
