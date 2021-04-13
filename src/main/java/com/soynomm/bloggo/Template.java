@@ -1,13 +1,7 @@
 package com.soynomm.bloggo;
 
 import com.github.jknack.handlebars.Handlebars;
-import com.github.mustachejava.DefaultMustacheFactory;
-import com.github.mustachejava.Mustache;
-import com.github.mustachejava.MustacheException;
-import com.github.mustachejava.MustacheFactory;
 import com.soynomm.bloggo.constants.Feedback;
-import org.apache.commons.io.output.StringBuilderWriter;
-import java.io.StringReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Map;
