@@ -8,7 +8,7 @@ public class TemplateTests {
 
     @Test
     public void testCompilationFromPath() {
-        Template template = new Template("src/test/resources/template.mustache");
+        Template template = new Template("src/test/resources/template.hbs");
         Map<String, Object> templateData = new HashMap<>();
         templateData.put("name", "John");
         String expected = "Hi, John";
@@ -18,7 +18,7 @@ public class TemplateTests {
 
     @Test
     public void testCompilationFromPathNotFound() {
-        Template template = new Template("src/test/resources/template_not_found.mustache");
+        Template template = new Template("src/test/resources/template_not_found.hbs");
         Map<String, Object> templateData = new HashMap<>();
         String expected = "";
 
@@ -36,7 +36,7 @@ public class TemplateTests {
     }
 
     @Test
-    public void testCompilatInvalidMustache() {
+    public void testCompilatInvalidHandlebars() {
         String template = "Hi, {{#name}}{{.}}{{/is_name}}";
         Map<String, Object> templateData = new HashMap<>();
         templateData.put("name", "John");

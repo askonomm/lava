@@ -98,9 +98,9 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.spullara.mustache.java</groupId>
-            <artifactId>compiler</artifactId>
-            <version>0.9.7</version>
+            <groupId>com.github.jknack</groupId>
+            <artifactId>handlebars</artifactId>
+            <version>4.2.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

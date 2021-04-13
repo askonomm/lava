@@ -126,7 +126,7 @@ class Bloggo {
         if (this.verbose) System.out.println(Feedback.VERB_4);
 
         Generator generator = new Generator(this.outDir);
-        Template template = new Template(this.resourcesDir + "/layout.mustache");
+        Template template = new Template(this.resourcesDir + "/layout.hbs");
         Map<String, Object> data = new HashMap<>();
         data.put("is_home", false);
         data.put("is_post", true);
@@ -137,7 +137,7 @@ class Bloggo {
 
             if (item.get("content") != null) {
                 String compiledContent = Template.compile(item.get("content"), data);
-                generator.generate(item.get("path").replace(".mustache", ""), compiledContent);
+                generator.generate(item.get("path").replace(".hbs", ""), compiledContent);
             } else {
                 data.put("post", item);
                 generator.generate(item.get("path") + "/index.html", template.compile(data));
@@ -154,7 +154,7 @@ class Bloggo {
         if (this.verbose) System.out.println(Feedback.VERB_6);
 
         Generator generator = new Generator(this.outDir);
-        Template template = new Template(this.resourcesDir + "/layout.mustache");
+        Template template = new Template(this.resourcesDir + "/layout.hbs");
         Map<String, Object> data = new HashMap<>();
         data.put("is_home", true);
         data.put("is_post", false);
