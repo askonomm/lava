@@ -1,12 +1,13 @@
 package com.soynomm.bloggo;
 
 import com.soynomm.bloggo.enums.TrimPos;
+import org.commonmark.Extension;
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
+import org.commonmark.ext.heading.anchor.HeadingAnchorExtension;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.util.*;
 
 /**
  * A bunch of stand-alone methods that do useful-enough things that
@@ -58,9 +59,10 @@ public class Utils {
      * @param markdown raw Markdown string
      */
     public static String markdownToHtml(String markdown) {
-        Parser parser = Parser.builder().build();
+        List<Extension> extensions = Collections.singletonList(HeadingAnchorExtension.create());
+        Parser parser = Parser.builder().extensions(extensions).build();
         Node document = parser.parse(markdown);
-        HtmlRenderer renderer = HtmlRenderer.builder().build();
+        HtmlRenderer renderer = HtmlRenderer.builder().extensions(extensions).build();
 
         return renderer.render(document);
     }
