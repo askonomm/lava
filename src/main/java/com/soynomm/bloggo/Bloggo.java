@@ -32,10 +32,10 @@ class Bloggo {
     public Bloggo(String[] args) {
         ArgParser argParser = new ArgParser(args);
 
-        this.resourcesDir = Utils.trimStr(argParser.get("-r", "--resources", "/Users/asko/Projects/nomm.xyz/resources"), TrimPos.RIGHT, "/");
+        this.resourcesDir = Utils.trimStr(argParser.get("-r", "--resources", "./resources"), TrimPos.RIGHT, "/");
         this.outDir = Utils.trimStr(argParser.get("-o", "--out", "./public"), TrimPos.RIGHT, "/");
         this.watch = argParser.get("-w", "--watch", false);
-        this.verbose = argParser.get("-v", "--verbose", true);
+        this.verbose = argParser.get("-v", "--verbose", false);
         this.help = argParser.get("-h", "--help", false);
     }
 
