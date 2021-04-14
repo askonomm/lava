@@ -61,6 +61,7 @@ public class Template {
      */
     private static String compileStringToHandlebars(String template, Map<String, Object> data) {
         Handlebars handlebars = new Handlebars();
+        handlebars.registerHelpers(new TemplateHelpers());
 
         try {
             return handlebars.compileInline(template).apply(data);

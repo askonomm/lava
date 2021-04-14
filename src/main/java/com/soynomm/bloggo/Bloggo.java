@@ -32,10 +32,10 @@ class Bloggo {
     public Bloggo(String[] args) {
         ArgParser argParser = new ArgParser(args);
 
-        this.resourcesDir = Utils.trimStr(argParser.get("-r", "--resources", "./resources"), TrimPos.RIGHT, "/");
+        this.resourcesDir = Utils.trimStr(argParser.get("-r", "--resources", "/Users/asko/Projects/nomm.xyz/resources"), TrimPos.RIGHT, "/");
         this.outDir = Utils.trimStr(argParser.get("-o", "--out", "./public"), TrimPos.RIGHT, "/");
         this.watch = argParser.get("-w", "--watch", false);
-        this.verbose = argParser.get("-v", "--verbose", false);
+        this.verbose = argParser.get("-v", "--verbose", true);
         this.help = argParser.get("-h", "--help", false);
     }
 
@@ -101,7 +101,10 @@ class Bloggo {
         List<Map<String, Object>> posts = this.blogBuilder.getPosts();
 
         data.put("posts", posts);
-        data.put("last_update", posts.get(0).get("last_update"));
+
+        if (posts.size() > 0) {
+            data.put("last_update", posts.get(0).get("last_update"));
+        }
 
         this.data = data;
     }
