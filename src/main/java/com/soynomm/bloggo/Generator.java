@@ -14,7 +14,6 @@ import java.nio.file.Paths;
  * and a sitemap.xml for crawlers.
  *
  * @author Nomm
- * @since 1.0
  */
 public class Generator {
 

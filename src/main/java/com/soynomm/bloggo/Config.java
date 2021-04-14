@@ -16,7 +16,6 @@ import java.util.Map;
  * by a provided key.
  *
  * @author Nomm
- * @since 1.0
  */
 public class Config {
 

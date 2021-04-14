@@ -16,7 +16,6 @@ import java.util.Map;
  * A blog-oriented static site generator.
  *
  * @author Nomm
- * @since 1.0
  */
 class Bloggo {
 

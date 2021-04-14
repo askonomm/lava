@@ -12,7 +12,6 @@ import java.util.*;
  * the {@code ContentCompiler}.
  *
  * @author Nomm
- * @since 1.0
  */
 public class Builder {
 

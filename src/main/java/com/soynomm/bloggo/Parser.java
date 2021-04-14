@@ -12,7 +12,6 @@ import java.util.regex.Pattern;
  * that it contains.
  *
  * @author Nomm
- * @since 1.0
  */
 public class Parser {
 

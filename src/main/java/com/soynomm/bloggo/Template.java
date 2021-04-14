@@ -13,7 +13,6 @@ import java.util.Map;
  * powers the site.
  *
  * @author Nomm
- * @since 1.0
  */
 public class Template {
     String template;
