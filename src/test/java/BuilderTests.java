@@ -16,23 +16,17 @@ public class BuilderTests {
         List<Map<String, String>> expected = new ArrayList<>();
 
         Map<String, String> expectedItem1 = new HashMap<>();
-        expectedItem1.put("date", "Sat, 10 Oct 2020 00:00:00 +0000");
         expectedItem1.put("entry", "<p>Hi there.</p>\n");
         expectedItem1.put("path", "/blog/hello-world");
-        expectedItem1.put("pretty_date_without_year", "Oct 10");
-        expectedItem1.put("pretty_date", "Oct 10, 2020");
-        expectedItem1.put("date_unparsed", "2020-10-10");
+        expectedItem1.put("date", "2020-10-10");
         expectedItem1.put("title", "Hello, World.");
         expectedItem1.put("url", "https://example.com/blog/hello-world");
         expected.add(expectedItem1);
 
         Map<String, String> expectedItem2 = new HashMap<>();
-        expectedItem2.put("date", "Mon, 05 Oct 2020 00:00:00 +0000");
         expectedItem2.put("entry", "<p>Bye there.</p>\n");
         expectedItem2.put("path", "/blog/bye-world");
-        expectedItem2.put("pretty_date_without_year", "Oct 05");
-        expectedItem2.put("pretty_date", "Oct 05, 2020");
-        expectedItem2.put("date_unparsed", "2020-10-05");
+        expectedItem2.put("date", "2020-10-05");
         expectedItem2.put("title", "Bye, World.");
         expectedItem2.put("url", "https://example.com/blog/bye-world");
         expected.add(expectedItem2);
@@ -70,28 +64,22 @@ public class BuilderTests {
 
         Map<String, Object> year = new HashMap<>();
         year.put("year", "2020");
-        year.put("last_update", "Sat, 10 Oct 2020 00:00:00 +0000");
+        year.put("last_update", "2020-10-10");
 
         List<Map<String, String>> entries = new ArrayList<>();
 
         Map<String, String> entry1 = new HashMap<>();
-        entry1.put("date", "Sat, 10 Oct 2020 00:00:00 +0000");
         entry1.put("entry", "<p>Hi there.</p>\n");
         entry1.put("path", "/blog/hello-world");
-        entry1.put("pretty_date_without_year", "Oct 10");
-        entry1.put("pretty_date", "Oct 10, 2020");
-        entry1.put("date_unparsed", "2020-10-10");
+        entry1.put("date", "2020-10-10");
         entry1.put("title", "Hello, World.");
         entry1.put("url", "https://example.com/blog/hello-world");
         entries.add(entry1);
 
         Map<String, String> entry2 = new HashMap<>();
-        entry2.put("date", "Mon, 05 Oct 2020 00:00:00 +0000");
         entry2.put("entry", "<p>Bye there.</p>\n");
         entry2.put("path", "/blog/bye-world");
-        entry2.put("pretty_date_without_year", "Oct 05");
-        entry2.put("pretty_date", "Oct 05, 2020");
-        entry2.put("date_unparsed", "2020-10-05");
+        entry2.put("date", "2020-10-05");
         entry2.put("title", "Bye, World.");
         entry2.put("url", "https://example.com/blog/bye-world");
         entries.add(entry2);

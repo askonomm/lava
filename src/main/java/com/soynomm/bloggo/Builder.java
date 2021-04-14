@@ -12,7 +12,6 @@ import java.util.*;
  * the {@code ContentCompiler}.
  *
  * @author Nomm
- * @since 1.0
  */
 public class Builder {
 
@@ -41,8 +40,8 @@ public class Builder {
         Map<String, List<Map<String, String>>> postsByYear = new HashMap<>();
 
         for (Map<String, String> entry : this.contents) {
-            if (entry.get("date_unparsed") != null) {
-                String dateYear = entry.get("date_unparsed").split("-")[0];
+            if (entry.get("date") != null) {
+                String dateYear = entry.get("date").split("-")[0];
 
                 if (postsByYear.get(dateYear) != null) {
                     List<Map<String, String>> postsInYear = postsByYear.get(dateYear);
@@ -62,7 +61,7 @@ public class Builder {
             Map<String, Object> postsByYearEntry = new HashMap<>();
             List<Map<String, String>> entries = postsByYear.get(year.getKey());
 
-            entries.sort((a, b) -> b.get("date_unparsed").compareTo(a.get("date_unparsed")));
+            entries.sort((a, b) -> b.get("date").compareTo(a.get("date")));
 
             postsByYearEntry.put("year", year.getKey());
             postsByYearEntry.put("last_update", year.getValue().get(0).get("date"));
@@ -138,15 +137,6 @@ public class Builder {
                 if (item.endsWith(".md")) {
                     Parser parser = new Parser(fileContent);
                     Map<String, String> meta = parser.meta();
-
-                    /* If date exists, we also want to have a pretty date. */
-                    if (meta.get("date") != null) {
-                        meta.put("pretty_date", Utils.date(meta.get("date"), "MMM dd, yyyy"));
-                        meta.put("pretty_date_without_year", Utils.date(meta.get("date"), "MMM dd"));
-                        meta.put("date_unparsed", meta.get("date"));
-                        meta.put("date", Utils.date(meta.get("date")));
-                    }
-
                     String entry = parser.entry();
 
                     content.putAll(meta);

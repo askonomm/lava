@@ -14,7 +14,6 @@ import java.util.*;
  * it makes sense to extract them here.
  *
  * @author Nomm
- * @since 1.0
  */
 public class Utils {
 

@@ -13,7 +13,6 @@ import java.util.Map;
  * powers the site.
  *
  * @author Nomm
- * @since 1.0
  */
 public class Template {
     String template;
@@ -62,6 +61,7 @@ public class Template {
      */
     private static String compileStringToHandlebars(String template, Map<String, Object> data) {
         Handlebars handlebars = new Handlebars();
+        handlebars.registerHelpers(new TemplateHelpers());
 
         try {
             return handlebars.compileInline(template).apply(data);

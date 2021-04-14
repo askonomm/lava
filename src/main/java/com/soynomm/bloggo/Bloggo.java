@@ -16,7 +16,6 @@ import java.util.Map;
  * A blog-oriented static site generator.
  *
  * @author Nomm
- * @since 1.0
  */
 class Bloggo {
 
@@ -102,7 +101,10 @@ class Bloggo {
         List<Map<String, Object>> posts = this.blogBuilder.getPosts();
 
         data.put("posts", posts);
-        data.put("last_update", posts.get(0).get("last_update"));
+
+        if (posts.size() > 0) {
+            data.put("last_update", posts.get(0).get("last_update"));
+        }
 
         this.data = data;
     }

@@ -9,7 +9,6 @@ import java.util.Arrays;
  * argument is not there.
  *
  * @author Nomm
- * @since 1.0
  */
 public class ArgParser {
 

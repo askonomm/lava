@@ -99,10 +99,7 @@ Markdown content file data is available to you via `{{metakey}}` Handlebars temp
 available via the following variables in your Handlebars templates:
 
 - `{{title}}` - renders the meta-data title value
-- `{{date}}` - renders the default date in the format of `EEE, dd MMM yyyy HH:mm:ss Z`
-- `{{date_unparsed}}` - renders the date as it is in the content file
-- `{{pretty_date}}` - renders the date in the format of `MMM dd, yyyy`
-- `{{pretty_date_without_year}}` - renders the date in the format of `MMM dd`
+- `{{date}}` - renders the date as it is in the content file
 - `{{{entry}}}` - renders the entry-block Markdown into HTML. Yes, needs 3 brackets.
 - `{{url}}` - renders the fully-qualified URL of the content item (https://example.com/hello-world/)
 - `{{path}}` - renders the content item's path (/hello-world/)
@@ -121,6 +118,20 @@ Just like in the case of a Markdown content file, the filename of Handlebars tem
 But unlike a Markdown content file, a Handlebars content file will not be compiled into a HTML file. Instead, it will be 
 compiled into whatever format you want. For example a file with a name of `feed.xml.hbs` will be compiled into `feed.xml`, 
 thus allowing you to determine the file format.
+
+### Helpers
+
+#### `format_date`
+
+You can use the `format_date` helper to shape your up your dates by passing it the 
+date variable and the format in which you want the output to be, for example:
+
+```handlebars
+{{format_date date "MMM dd, yyyy"}}
+```
+
+The `date` is the actual meta-data coming from your content file. The following is the SimpleDateFormat date format string. 
+You can find all of the combinations you can use [http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html](here).
 
 ### Template data
 
@@ -150,7 +161,7 @@ Example usage:
 ```handlebars
 {{#is_post}}
   <h2>{{title}}></h2>
-  <div class="date">{{pretty_date}}</div>
+  <div class="date">{{format_date date "MMM dd, yyyy"}}</div>
   <div class="entry">{{{entry}}}</div>
 {{/is_post}}
 ```
@@ -168,7 +179,7 @@ Example usage:
     {{#entries}}
       <li>
           <h3><a href="{{url}}" title="{{title}}">{{title}}</a></h3>
-          <div class="date">{{pretty_date_without_year}}</div>
+          <div class="date">{{format_date date "MMM dd, yyyy"}}</div>
       </li>
     {{/entries}}
 {{/posts}}
@@ -177,7 +188,7 @@ Example usage:
 
 #### `last_update`
 
-Returns the date of the last created content item inside the `content/blog` directory in `EEE, dd MMM yyyy HH:mm:ss Z` format.
+Returns the date of the last created content item inside the `content/blog` directory.
 
 ### Site configuration
 
