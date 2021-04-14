@@ -1,6 +1,8 @@
 package com.soynomm.bloggo;
 
 import com.github.jknack.handlebars.Handlebars;
+import com.github.jknack.handlebars.Helper;
+import com.github.jknack.handlebars.Options;
 import com.soynomm.bloggo.constants.Feedback;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -61,11 +63,18 @@ public class Template {
      */
     private static String compileStringToHandlebars(String template, Map<String, Object> data) {
         Handlebars handlebars = new Handlebars();
-        handlebars.registerHelpers(new TemplateHelpers());
+
+        // Create a `format_date` helper.
+        handlebars.registerHelper("format_date", new Helper<String>() {
+            public CharSequence apply(String date, Options options) {
+                return new Handlebars.SafeString(Utils.date(date, options.param(0)));
+            }
+        });
 
         try {
             return handlebars.compileInline(template).apply(data);
         } catch(Exception e) {
+            System.out.println(e.getMessage());
             return "";
         }
     }
