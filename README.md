@@ -14,6 +14,7 @@ dynamic content in the form of Handlebars templates, allowing you to create flex
     - [Markdown](#markdown)
     - [Handlebars](#handlebars)
   - [Site layout](#site-layout)
+  - [Helpers](#helpers)
   - [Template data](#template-data)
   - [Site configuration](#site-configuration)
   - [Command-line usage](#command-line-usage)
@@ -131,7 +132,7 @@ date variable, and the format in which you want the output to be, for example:
 ```
 
 The `date` is the actual meta-data coming from your content file. The following is the SimpleDateFormat date format string. 
-You can find all the combinations you can use [http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html](here).
+You can find all the combinations you can use [here](http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html).
 
 ### Template data
 
