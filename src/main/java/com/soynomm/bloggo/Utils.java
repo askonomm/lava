@@ -23,10 +23,10 @@ public class Utils {
      * @param input raw date input (needs to be in yyyy-MM-dd format)
      */
     public static String date(String input) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        var sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
         try {
-            Date date = sdf.parse(input);
+            var date = sdf.parse(input);
             sdf.applyPattern("EEE, dd MMM yyyy HH:mm:ss Z");
             return sdf.format(date);
         } catch(java.text.ParseException e) {
@@ -41,10 +41,10 @@ public class Utils {
      * @param format SimpleDateFormat date pattern
      */
     public static String date(String input, String format) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        var sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
         try {
-            Date date = sdf.parse(input);
+            var date = sdf.parse(input);
             sdf.applyPattern(format);
             return sdf.format(date);
         } catch(java.text.ParseException e) {
@@ -58,10 +58,10 @@ public class Utils {
      * @param markdown raw Markdown string
      */
     public static String markdownToHtml(String markdown) {
-        List<Extension> extensions = Collections.singletonList(HeadingAnchorExtension.create());
-        Parser parser = Parser.builder().extensions(extensions).build();
-        Node document = parser.parse(markdown);
-        HtmlRenderer renderer = HtmlRenderer.builder().extensions(extensions).build();
+        var extensions = Collections.singletonList(HeadingAnchorExtension.create());
+        var parser = Parser.builder().extensions(extensions).build();
+        var document = parser.parse(markdown);
+        var renderer = HtmlRenderer.builder().extensions(extensions).build();
 
         return renderer.render(document);
     }
@@ -75,7 +75,7 @@ public class Utils {
      */
     public static String trimStr(String input, TrimPos position, String trimmedChar) {
         if (position.equals(TrimPos.LEFT)) {
-            String firstChar = input.substring(0, 1);
+            var firstChar = input.substring(0, 1);
 
             if (firstChar.equals(trimmedChar)) {
                 input = trimStr(input.substring(1), position, trimmedChar);
@@ -83,7 +83,7 @@ public class Utils {
         }
 
         if (position.equals(TrimPos.RIGHT)) {
-            String lastChar = input.substring(input.length() - 1);
+            var lastChar = input.substring(input.length() - 1);
 
             if (lastChar.equals(trimmedChar)) {
                 input = trimStr(input.substring(0, input.length() - 1), position, trimmedChar);

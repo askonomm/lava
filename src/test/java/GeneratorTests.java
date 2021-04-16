@@ -11,13 +11,13 @@ public class GeneratorTests {
 
     @Test
     public void testGeneration() throws IOException {
-        String outDir = "src/test/resources/public";
-        Generator generator = new Generator(outDir);
-        String expected = "Hello, World.";
+        var outDir = "src/test/resources/public";
+        var generator = new Generator(outDir);
+        var expected = "Hello, World.";
 
         generator.generate("/index.html", "Hello, World.");
 
-        String generatedContent = new String(Files.readAllBytes(Paths.get(outDir + "/index.html")));
+        var generatedContent = new String(Files.readAllBytes(Paths.get(outDir + "/index.html")));
 
         assertEquals(expected, generatedContent);
 

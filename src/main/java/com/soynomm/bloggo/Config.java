@@ -30,8 +30,8 @@ public class Config {
      */
     public Config(String path) {
         try {
-            String configContent = new String(Files.readAllBytes(Paths.get(path)));
-            Type configType = new TypeToken<HashMap<String, Object>>(){}.getType();
+            var configContent = new String(Files.readAllBytes(Paths.get(path)));
+            var configType = new TypeToken<HashMap<String, Object>>(){}.getType();
             this.config = new Gson().fromJson(configContent, configType);
         } catch(IOException | JsonSyntaxException e) {
             this.config = new HashMap<>();

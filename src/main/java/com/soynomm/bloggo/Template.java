@@ -21,7 +21,7 @@ public class Template {
     String templatePath;
 
     public Template(String path) {
-        String template = "";
+        var template = "";
 
         try {
             template = new String(Files.readAllBytes(Paths.get(path)));
@@ -62,7 +62,7 @@ public class Template {
      * @param data data to pass to the Handlebars template
      */
     private static String compileStringToHandlebars(String template, Map<String, Object> data) {
-        Handlebars handlebars = new Handlebars();
+        var handlebars = new Handlebars();
 
         // Create a `format_date` helper.
         handlebars.registerHelper("format_date", new Helper<String>() {

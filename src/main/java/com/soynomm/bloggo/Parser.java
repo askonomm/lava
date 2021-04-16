@@ -28,21 +28,21 @@ public class Parser {
      * @param items array of lines from the meta-data block to parse
      */
     private HashMap<String, String> parseMetaLines(String[] items) {
-        List<String> lines = new ArrayList<>();
+        var lines = new ArrayList<String>();
 
         /* Removes items that are `---` and trim spaces from around items. */
-        for (String item : items) {
+        for (var item : items) {
             if (!item.equals("---")) {
                 lines.add(item.trim());
             }
         }
 
         /* Create a HashMap of key, value pairs from the lines */
-        HashMap<String, String> meta = new HashMap<>();
+        var meta = new HashMap<String, String>();
 
-        for (String line : lines) {
-            String key = line.split(":")[0].trim();
-            String value = line.split(":")[1].trim();
+        for (var line : lines) {
+            var key = line.split(":")[0].trim();
+            var value = line.split(":")[1].trim();
 
             meta.put(key, value);
         }
@@ -56,8 +56,8 @@ public class Parser {
      * it returns an empty HashMap instead, so nothing breaks.
      */
     public HashMap<String, String> meta() {
-        Pattern pattern = Pattern.compile("(?s)^---(.*?)---*");
-        Matcher matcher = pattern.matcher(this.content);
+        var pattern = Pattern.compile("(?s)^---(.*?)---*");
+        var matcher = pattern.matcher(this.content);
 
         if (matcher.find()) {
             return this.parseMetaLines(matcher.group().split("(\r\n|\r|\n)", -1));
@@ -70,7 +70,7 @@ public class Parser {
      * Finds and returns the entry block from the provided {@code this.content}.
      */
     public String entry() {
-        String entry = this.content.replaceFirst("(?s)^---(.*?)---*", "");
+        var entry = this.content.replaceFirst("(?s)^---(.*?)---*", "");
 
         return entry.trim();
     }

@@ -9,13 +9,13 @@ public class BuilderTests {
     public void testContents() {
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 
-        String rootDir = "src/test/resources/content";
-        String contentDir = "src/test/resources/content";
-        String siteUrl = "https://example.com";
-        Builder builder = new Builder(rootDir, contentDir, siteUrl);
-        List<Map<String, String>> expected = new ArrayList<>();
+        var rootDir = "src/test/resources/content";
+        var contentDir = "src/test/resources/content";
+        var siteUrl = "https://example.com";
+        var builder = new Builder(rootDir, contentDir, siteUrl);
+        var expected = new ArrayList<Map<String, String>>();
 
-        Map<String, String> expectedItem1 = new HashMap<>();
+        var expectedItem1 = new HashMap<String, String>();
         expectedItem1.put("entry", "<p>Hi there.</p>\n");
         expectedItem1.put("path", "/blog/hello-world");
         expectedItem1.put("date", "2020-10-10");
@@ -23,7 +23,7 @@ public class BuilderTests {
         expectedItem1.put("url", "https://example.com/blog/hello-world");
         expected.add(expectedItem1);
 
-        Map<String, String> expectedItem2 = new HashMap<>();
+        var expectedItem2 = new HashMap<String, String>();
         expectedItem2.put("entry", "<p>Bye there.</p>\n");
         expectedItem2.put("path", "/blog/bye-world");
         expectedItem2.put("date", "2020-10-05");
@@ -31,7 +31,7 @@ public class BuilderTests {
         expectedItem2.put("url", "https://example.com/blog/bye-world");
         expected.add(expectedItem2);
 
-        Map<String, String> expectedItem3 = new HashMap<>();
+        var expectedItem3 = new HashMap<String, String>();
         expectedItem3.put("entry", "<p>Test page content.</p>\n");
         expectedItem3.put("path", "/test-page");
         expectedItem3.put("title", "Test Page");
@@ -43,11 +43,11 @@ public class BuilderTests {
 
     @Test
     public void testContentsNoneFound() {
-        String rootDir = "src/test/resources/content";
-        String contentDir = "src/test/resources/content/doesnt-exist";
-        String siteUrl = "https://example.com";
-        Builder builder = new Builder(rootDir, contentDir, siteUrl);
-        List<Map<String, String>> expected = new ArrayList<>();
+        var rootDir = "src/test/resources/content";
+        var contentDir = "src/test/resources/content/doesnt-exist";
+        var siteUrl = "https://example.com";
+        var builder = new Builder(rootDir, contentDir, siteUrl);
+        var expected = new ArrayList<Map<String, String>>();
 
         assertEquals(expected, builder.getContents());
     }
@@ -56,19 +56,19 @@ public class BuilderTests {
     public void testPosts() {
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 
-        String rootDir = "src/test/resources/content";
-        String contentDir = "src/test/resources/content/blog";
-        String siteUrl = "https://example.com";
-        Builder builder = new Builder(rootDir, contentDir, siteUrl);
-        List<Map<String, Object>> expected = new ArrayList<>();
+        var rootDir = "src/test/resources/content";
+        var contentDir = "src/test/resources/content/blog";
+        var siteUrl = "https://example.com";
+        var builder = new Builder(rootDir, contentDir, siteUrl);
+        var expected = new ArrayList<Map<String, Object>>();
 
-        Map<String, Object> year = new HashMap<>();
+        var year = new HashMap<String, Object>();
         year.put("year", "2020");
         year.put("last_update", "2020-10-10");
 
-        List<Map<String, String>> entries = new ArrayList<>();
+        var entries = new ArrayList<Map<String, String>>();
 
-        Map<String, String> entry1 = new HashMap<>();
+        var entry1 = new HashMap<String, String>();
         entry1.put("entry", "<p>Hi there.</p>\n");
         entry1.put("path", "/blog/hello-world");
         entry1.put("date", "2020-10-10");
@@ -76,7 +76,7 @@ public class BuilderTests {
         entry1.put("url", "https://example.com/blog/hello-world");
         entries.add(entry1);
 
-        Map<String, String> entry2 = new HashMap<>();
+        var entry2 = new HashMap<String, String>();
         entry2.put("entry", "<p>Bye there.</p>\n");
         entry2.put("path", "/blog/bye-world");
         entry2.put("date", "2020-10-05");

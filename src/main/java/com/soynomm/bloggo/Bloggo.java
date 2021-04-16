@@ -30,7 +30,7 @@ class Bloggo {
     private Map<String, Object> data;
 
     public Bloggo(String[] args) {
-        ArgParser argParser = new ArgParser(args);
+        var argParser = new ArgParser(args);
 
         this.resourcesDir = Utils.trimStr(argParser.get("-r", "--resources", "./resources"), TrimPos.RIGHT, "/");
         this.outDir = Utils.trimStr(argParser.get("-o", "--out", "./public"), TrimPos.RIGHT, "/");
@@ -44,7 +44,7 @@ class Bloggo {
      */
     private void printHelp() {
         if (this.help) {
-            String format = "\t%-40s%s%n";
+            var format = "\t%-40s%s%n";
             System.out.println("Bloggo Static Site Generator");
             System.out.println("\nOptions:");
             System.out.printf(format, "-h, --help", "displays all options");
@@ -97,8 +97,8 @@ class Bloggo {
      * Constructs a generic dataset to be used within the templates
      */
     private void constructData() {
-        Map<String, Object> data = config.get();
-        List<Map<String, Object>> posts = this.blogBuilder.getPosts();
+        var data = config.get();
+        var posts = this.blogBuilder.getPosts();
 
         data.put("posts", posts);
 
@@ -127,18 +127,18 @@ class Bloggo {
     private void generateContent() {
         if (this.verbose) System.out.println(Feedback.VERB_4);
 
-        Generator generator = new Generator(this.outDir);
-        Template template = new Template(this.resourcesDir + "/layout.hbs");
-        Map<String, Object> data = new HashMap<>();
+        var generator = new Generator(this.outDir);
+        var template = new Template(this.resourcesDir + "/layout.hbs");
+        var data = new HashMap<String, Object>();
         data.put("is_home", false);
         data.put("is_post", true);
         data.putAll(this.data);
 
-        for (Map<String, String> item : this.contentBuilder.getContents()) {
+        for (var item : this.contentBuilder.getContents()) {
             if (this.verbose) System.out.println(Feedback.VERB_5(item.get("path")));
 
             if (item.get("content") != null) {
-                String compiledContent = Template.compile(item.get("content"), data);
+                var compiledContent = Template.compile(item.get("content"), data);
                 generator.generate(item.get("path").replace(".hbs", ""), compiledContent);
             } else {
                 data.put("post", item);
@@ -155,9 +155,9 @@ class Bloggo {
     private void generateHome() {
         if (this.verbose) System.out.println(Feedback.VERB_6);
 
-        Generator generator = new Generator(this.outDir);
-        Template template = new Template(this.resourcesDir + "/layout.hbs");
-        Map<String, Object> data = new HashMap<>();
+        var generator = new Generator(this.outDir);
+        var template = new Template(this.resourcesDir + "/layout.hbs");
+        var data = new HashMap<String, Object>();
         data.put("is_home", true);
         data.put("is_post", false);
         data.putAll(this.data);
@@ -174,8 +174,9 @@ class Bloggo {
         if (this.verbose) System.out.println(Feedback.VERB_7);
 
         try {
-            File from = new File(this.resourcesDir + "/assets");
-            File to = new File(this.outDir + "/assets");
+            var from = new File(this.resourcesDir + "/assets");
+            var to = new File(this.outDir + "/assets");
+
             FileUtils.copyDirectory(from, to);
         } catch(java.io.IOException e) {
             System.out.println(Feedback.FILE_6);
@@ -209,18 +210,18 @@ class Bloggo {
 
         if (this.watch) {
             try {
-                DirectoryWatcher watcher = DirectoryWatcher.builder()
-                        .path(Paths.get(this.resourcesDir))
-                        .listener(event -> this.generate())
-                        .fileHasher(FileHasher.LAST_MODIFIED_TIME)
+                var watcher = DirectoryWatcher.builder()
+                    .path(Paths.get(this.resourcesDir))
+                    .listener(event -> this.generate())
+                    .fileHasher(FileHasher.LAST_MODIFIED_TIME)
 
-                        /* But why not go with native, you ask? Well it's because
-                         * I compile Bloggo with GraalVM's native-image, and it doesn't
-                         * support JNA (Java Native Access), resulting in everything breaking.
-                         * Thus we go with the Java's built-in watch service instead.
-                         */
-                        .watchService(FileSystems.getDefault().newWatchService())
-                        .build();
+                    /* But why not go with native, you ask? Well it's because
+                     * I compile Bloggo with GraalVM's native-image, and it doesn't
+                     * support JNA (Java Native Access), resulting in everything breaking.
+                     * Thus we go with the Java's built-in watch service instead.
+                     */
+                    .watchService(FileSystems.getDefault().newWatchService())
+                    .build();
                 watcher.watch();
             } catch(java.io.IOException e) {
                 System.out.println(Feedback.FILE_5);
