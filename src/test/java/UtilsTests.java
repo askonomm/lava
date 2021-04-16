@@ -1,9 +1,7 @@
 import com.soynomm.bloggo.enums.TrimPos;
 import com.soynomm.bloggo.Utils;
 import org.junit.jupiter.api.Test;
-
 import java.util.TimeZone;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UtilsTests {
