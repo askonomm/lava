@@ -5,7 +5,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
@@ -31,7 +30,7 @@ public class Generator {
      * @param contents contents to add into the generated file
      */
     public void generate(String path, String contents) {
-        Path pathToFile = Paths.get(this.out_dir + path);
+        var pathToFile = Paths.get(this.out_dir + path);
 
         try {
             Files.createDirectories(pathToFile.getParent());
@@ -48,9 +47,9 @@ public class Generator {
         }
 
         try {
-            File file = new File(this.out_dir + path);
-            FileWriter fw = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
+            var file = new File(this.out_dir + path);
+            var fw = new FileWriter(file.getAbsoluteFile());
+            var bw = new BufferedWriter(fw);
             bw.write(contents);
             bw.close();
         } catch(java.io.IOException e) {

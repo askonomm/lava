@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -30,8 +29,8 @@ public class Config {
      */
     public Config(String path) {
         try {
-            String configContent = new String(Files.readAllBytes(Paths.get(path)));
-            Type configType = new TypeToken<HashMap<String, Object>>(){}.getType();
+            var configContent = new String(Files.readAllBytes(Paths.get(path)));
+            var configType = new TypeToken<HashMap<String, Object>>(){}.getType();
             this.config = new Gson().fromJson(configContent, configType);
         } catch(IOException | JsonSyntaxException e) {
             this.config = new HashMap<>();

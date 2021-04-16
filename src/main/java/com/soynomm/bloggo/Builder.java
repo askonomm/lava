@@ -2,7 +2,6 @@ package com.soynomm.bloggo;
 
 import java.io.File;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
@@ -37,29 +36,29 @@ public class Builder {
      * to be used for displaying blog posts by groups of year.
      */
     public List<Map<String, Object>> getPosts() {
-        Map<String, List<Map<String, String>>> postsByYear = new HashMap<>();
+        var postsByYear = new HashMap<String, List<Map<String, String>>>();
 
-        for (Map<String, String> entry : this.contents) {
+        for (var entry : this.contents) {
             if (entry.get("date") != null) {
-                String dateYear = entry.get("date").split("-")[0];
+                var dateYear = entry.get("date").split("-")[0];
 
                 if (postsByYear.get(dateYear) != null) {
-                    List<Map<String, String>> postsInYear = postsByYear.get(dateYear);
+                    var postsInYear = postsByYear.get(dateYear);
                     postsInYear.add(entry);
                     postsByYear.replace(dateYear, postsInYear);
                 } else {
-                    List<Map<String, String>> postsInYear = new ArrayList<>();
+                    var postsInYear = new ArrayList<Map<String, String>>();
                     postsInYear.add(entry);
                     postsByYear.put(dateYear, postsInYear);
                 }
             }
         }
 
-        List<Map<String, Object>> postsByYearParsed = new ArrayList<>();
+        var postsByYearParsed = new ArrayList<Map<String, Object>>();
 
-        for (Map.Entry<String, List<Map<String, String>>> year : new TreeMap<>(postsByYear).entrySet()) {
-            Map<String, Object> postsByYearEntry = new HashMap<>();
-            List<Map<String, String>> entries = postsByYear.get(year.getKey());
+        for (var year : new TreeMap<>(postsByYear).entrySet()) {
+            var postsByYearEntry = new HashMap<String, Object>();
+            var entries = postsByYear.get(year.getKey());
 
             entries.sort((a, b) -> b.get("date").compareTo(a.get("date")));
 
@@ -80,15 +79,15 @@ public class Builder {
      * @param fromPath path to traverse for content files
      */
     private List<String> buildPaths(String fromPath) {
-        List<String> paths = new ArrayList<>();
-        File file = new File(fromPath);
-        String[] pathList = file.list();
+        var paths = new ArrayList<String>();
+        var file = new File(fromPath);
+        var pathList = file.list();
 
         if (pathList != null) {
-            for (String item : pathList) {
-                String completePath = fromPath + "/" + item;
-                String relativePath = completePath.replace(this.rootDir, "");
-                Path path = Paths.get(completePath);
+            for (var item : pathList) {
+                var completePath = fromPath + "/" + item;
+                var relativePath = completePath.replace(this.rootDir, "");
+                var path = Paths.get(completePath);
 
                 if (Files.isRegularFile(path) && (item.endsWith(".md")) || item.endsWith(".hbs")) {
                     paths.add(relativePath);
@@ -114,12 +113,12 @@ public class Builder {
      * @param siteUrl a fully qualified URL of the site (example: https://website.com)
      */
     private List<Map<String, String>> buildContents(List<String> paths, String siteUrl) {
-        List<Map<String, String>> contents = new ArrayList<>();
+        var contents = new ArrayList<Map<String, String>>();
 
-        for (String item : paths) {
+        for (var item : paths) {
             try {
-                String fileContent = new String(Files.readAllBytes(Paths.get(this.rootDir + item)));
-                Map<String, String> content = new HashMap<>();
+                var fileContent = new String(Files.readAllBytes(Paths.get(this.rootDir + item)));
+                var content = new HashMap<String, String>();
 
                 /* In the case it's a mustache file, we don't actually
                  * want to do any of the magic that we do with a Markdown
@@ -135,9 +134,9 @@ public class Builder {
                  * and if it has a date meta item, we'll also do date parsing.
                  */
                 if (item.endsWith(".md")) {
-                    Parser parser = new Parser(fileContent);
-                    Map<String, String> meta = parser.meta();
-                    String entry = parser.entry();
+                    var parser = new Parser(fileContent);
+                    var meta = parser.meta();
+                    var entry = parser.entry();
 
                     content.putAll(meta);
                     content.put("entry", Utils.markdownToHtml(entry));

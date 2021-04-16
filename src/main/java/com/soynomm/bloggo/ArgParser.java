@@ -36,10 +36,10 @@ public class ArgParser {
      */
     public String get(String arg, String defaultValue) {
         if (this.has(arg)) {
-            int index = Arrays.asList(args).indexOf(arg);
+            var index = Arrays.asList(args).indexOf(arg);
 
             try {
-                String value = this.args[index + 1];
+                var value = this.args[index + 1];
 
                 if (value.charAt(0) != '-') {
                     return value;

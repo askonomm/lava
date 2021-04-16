@@ -14,6 +14,7 @@ dynamic content in the form of Handlebars templates, allowing you to create flex
     - [Markdown](#markdown)
     - [Handlebars](#handlebars)
   - [Site layout](#site-layout)
+  - [Helpers](#helpers)
   - [Template data](#template-data)
   - [Site configuration](#site-configuration)
   - [Command-line usage](#command-line-usage)
@@ -123,15 +124,15 @@ thus allowing you to determine the file format.
 
 #### `format_date`
 
-You can use the `format_date` helper to shape your up your dates by passing it the 
-date variable and the format in which you want the output to be, for example:
+You can use the `format_date` helper to shape up your dates by passing it the 
+date variable, and the format in which you want the output to be, for example:
 
 ```handlebars
 {{format_date date "MMM dd, yyyy"}}
 ```
 
 The `date` is the actual meta-data coming from your content file. The following is the SimpleDateFormat date format string. 
-You can find all of the combinations you can use [http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html](here).
+You can find all the combinations you can use [here](http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html).
 
 ### Template data
 
