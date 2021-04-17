@@ -25,7 +25,7 @@ dynamic content in the form of Handlebars templates, allowing you to create flex
 ### Linux & macOS
 
 1. Open your terminal / shell
-2. Run `curl -s https://raw.githubusercontent.com/soynomm/bloggo/install.sh | bash`
+2. Run `curl -s https://raw.githubusercontent.com/soynomm/bloggo/master/install.sh | bash`
 
 ### Windows
 
