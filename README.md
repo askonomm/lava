@@ -4,9 +4,9 @@ A blog-oriented static site generator that supports static content in the form o
 dynamic content in the form of Handlebars templates, allowing you to create flexible websites.
 
 - [Installation](#installation)
-  - [Linux](#linux)
-  - [macOS](#macos)
+  - [Linux & macOS](#linux--macos)
   - [Windows](#windows)
+  - [Java](#java)
 - [Updating](#updating)
 - [Usage](#usage)
   - [Directory structure](#directory-structure)
@@ -22,19 +22,10 @@ dynamic content in the form of Handlebars templates, allowing you to create flex
 
 ## Installation
 
-### Linux
+### Linux & macOS
 
-1. Download the `bloggo-linux` executable from the [latest release](https://github.com/soynomm/bloggo/releases)
-2. Rename it to something more friendly like `bloggo` with `mv bloggo-linux bloggo`
-3. Make it executable via `chmod +x bloggo`
-4. Run it with `./bloggo` (or move it to `/usr/local/bin` to access globally as `bloggo`)
-
-### macOS
-
-1. Download the `bloggo-mac` executable from the [latest release](https://github.com/soynomm/bloggo/releases)
-2. Rename it to something more friendly like `bloggo` with `mv bloggo-mac bloggo`
-3. Make it executable via `chmod +x bloggo`
-4. Run it with `./bloggo` (or move it to `/usr/local/bin` to access globally as `bloggo`)
+1. Open your terminal / shell
+2. Run `curl -s https://raw.githubusercontent.com/soynomm/bloggo/install.sh | bash`
 
 ### Windows
 
