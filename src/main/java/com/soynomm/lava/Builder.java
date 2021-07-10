@@ -1,4 +1,4 @@
-package com.soynomm.bloggo;
+package com.soynomm.lava;
 
 import java.io.File;
 import java.nio.file.Files;
