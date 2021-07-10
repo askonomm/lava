@@ -1,4 +1,4 @@
-package com.soynomm.bloggo.constants;
+package com.soynomm.lava.constants;
 
 /**
  * Holds the strings used to communicate,
