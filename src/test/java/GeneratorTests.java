@@ -1,5 +1,5 @@
 import static org.junit.jupiter.api.Assertions.*;
-import com.soynomm.bloggo.Generator;
+import com.soynomm.lava.Generator;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 import java.io.File;
