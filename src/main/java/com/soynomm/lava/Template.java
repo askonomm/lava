@@ -3,7 +3,7 @@ package com.soynomm.lava;
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Helper;
 import com.github.jknack.handlebars.Options;
-import com.soynomm.bloggo.constants.Feedback;
+import com.soynomm.lava.constants.Feedback;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Map;
