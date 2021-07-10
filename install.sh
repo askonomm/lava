@@ -2,18 +2,18 @@
 
 if [ "$(uname -s)" = "Darwin" ]; then
   echo "Downloading ..."
-  wget -q --show-progress https://github.com/soynomm/bloggo/releases/latest/download/bloggo-mac \
-  && chmod +x bloggo-mac \
-  && mv bloggo-mac bloggo \
-  && mv bloggo /usr/local/bin
+  wget -q --show-progress https://github.com/askonomm/lava/releases/latest/download/lava-mac \
+  && chmod +x lava-mac \
+  && mv lava-mac lava \
+  && mv lava /usr/local/bin
   echo "All done."
 fi
 
 if [ "$(uname -s)" = "Linux" ]; then
   echo "Downloading ..."
-  wget -q --show-progress https://github.com/soynomm/bloggo/releases/latest/download/bloggo-linux \
-  && chmod +x bloggo-linux \
-  && mv bloggo-linux bloggo \
-  && mv bloggo /usr/local/bin
+  wget -q --show-progress https://github.com/askonomm/lava/releases/latest/download/lava-linux \
+  && chmod +x lava-linux \
+  && mv lava-linux lava \
+  && mv lava /usr/local/bin
   echo "All done."
 fi
