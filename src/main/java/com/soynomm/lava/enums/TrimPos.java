@@ -1,4 +1,4 @@
-package com.soynomm.bloggo.enums;
+package com.soynomm.lava.enums;
 
 /**
  * Used for determining the position of string
