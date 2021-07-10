@@ -1,4 +1,4 @@
-package com.soynomm.bloggo;
+package com.soynomm.lava;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
