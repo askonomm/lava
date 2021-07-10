@@ -1,4 +1,4 @@
-package com.soynomm.bloggo;
+package com.soynomm.lava;
 
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Helper;
