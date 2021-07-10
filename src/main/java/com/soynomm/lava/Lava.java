@@ -1,7 +1,7 @@
 package com.soynomm.lava;
 
-import com.soynomm.bloggo.constants.Feedback;
-import com.soynomm.bloggo.enums.TrimPos;
+import com.soynomm.lava.constants.Feedback;
+import com.soynomm.lava.enums.TrimPos;
 import io.methvin.watcher.DirectoryWatcher;
 import io.methvin.watcher.hashing.FileHasher;
 import org.apache.commons.io.FileUtils;
