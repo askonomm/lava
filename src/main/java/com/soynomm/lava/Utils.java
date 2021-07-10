@@ -1,6 +1,6 @@
 package com.soynomm.bloggo;
 
-import com.soynomm.bloggo.enums.TrimPos;
+import com.soynomm.lava.enums.TrimPos;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
 import org.commonmark.ext.heading.anchor.HeadingAnchorExtension;
