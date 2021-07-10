@@ -1,5 +1,5 @@
 import static org.junit.jupiter.api.Assertions.*;
-import com.soynomm.bloggo.ArgParser;
+import com.soynomm.lava.ArgParser;
 import org.junit.jupiter.api.Test;
 
 public class ArgParserTests {
