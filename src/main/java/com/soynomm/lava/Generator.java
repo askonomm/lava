@@ -1,6 +1,6 @@
-package com.soynomm.bloggo;
+package com.soynomm.lava;
 
-import com.soynomm.bloggo.constants.Feedback;
+import com.soynomm.lava.constants.Feedback;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
