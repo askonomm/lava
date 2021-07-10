@@ -1,4 +1,4 @@
-package com.soynomm.bloggo;
+package com.soynomm.lava;
 
 public class Main {
 
