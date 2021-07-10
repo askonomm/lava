@@ -1,4 +1,4 @@
-package com.soynomm.bloggo;
+package com.soynomm.lava;
 
 import com.soynomm.lava.enums.TrimPos;
 import org.commonmark.parser.Parser;
