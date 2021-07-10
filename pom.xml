@@ -41,7 +41,7 @@
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.soynomm.bloggo.Main</mainClass>
+                            <mainClass>com.soynomm.lava.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -65,7 +65,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.soynomm.bloggo.Main</mainClass>
+                            <mainClass>com.soynomm.lava.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
