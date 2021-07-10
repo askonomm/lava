@@ -1,4 +1,4 @@
-package com.soynomm.bloggo;
+package com.soynomm.lava;
 
 import com.soynomm.bloggo.constants.Feedback;
 import com.soynomm.bloggo.enums.TrimPos;
@@ -16,7 +16,7 @@ import java.util.Map;
  *
  * @author Nomm
  */
-class Bloggo {
+class Lava {
 
     private final String resourcesDir;
     private final String outDir;
@@ -28,7 +28,7 @@ class Bloggo {
     private Builder blogBuilder;
     private Map<String, Object> data;
 
-    public Bloggo(String[] args) {
+    public Lava(String[] args) {
         var argParser = new ArgParser(args);
 
         this.resourcesDir = Utils.trimStr(argParser.get("-r", "--resources", "./resources"), TrimPos.RIGHT, "/");
