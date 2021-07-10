@@ -112,7 +112,7 @@ jobs:
           
       - name: 'Build Linux Image'
         run: |
-          native-image --initialize-at-run-time=io.methvin.watchservice.jna.CarbonAPI --report-unsupported-elements-at-runtime --initialize-at-build-time --no-server --no-fallback -jar bloggo.jar
+          native-image --initialize-at-run-time=io.methvin.watchservice.jna.CarbonAPI --report-unsupported-elements-at-runtime --initialize-at-build-time --no-server --no-fallback -jar lava.jar
           
       - name: 'Publish Linux Image'
         if: success()
@@ -165,7 +165,7 @@ jobs:
           echo "UPLOAD_URL=$(cat upload_url.txt)" >> $GITHUB_ENV
       - name: 'Build Mac OS Image'
         run: |
-          native-image --initialize-at-run-time=io.methvin.watchservice.jna.CarbonAPI --report-unsupported-elements-at-runtime --initialize-at-build-time --no-server --no-fallback -jar bloggo.jar
+          native-image --initialize-at-run-time=io.methvin.watchservice.jna.CarbonAPI --report-unsupported-elements-at-runtime --initialize-at-build-time --no-server --no-fallback -jar lava.jar
       - name: 'Publish Mac OS Image'
         if: success()
         uses: actions/upload-artifact@v2-preview
@@ -213,7 +213,7 @@ jobs:
           JAVA_HOME: ./graalvm-ce-java11-21.0.0.2
         run: |
           call "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
-          ./graalvm-ce-java11-21.0.0.2/bin/native-image --no-server --no-fallback -H:Name=blogger -jar bloggo.jar
+          ./graalvm-ce-java11-21.0.0.2/bin/native-image --no-server --no-fallback -H:Name=blogger -jar lava.jar
       - name: 'Get Release URL'
         uses: actions/download-artifact@v2-preview
         with:
