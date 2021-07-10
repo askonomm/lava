@@ -1,4 +1,4 @@
-import com.soynomm.bloggo.Config;
+import com.soynomm.lava.Config;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.HashMap;
