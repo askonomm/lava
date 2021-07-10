@@ -30,7 +30,7 @@ dynamic content in the form of Handlebars templates, allowing you to create flex
 ### Windows
 
 1. Download the `lava.exe` executable from the [latest release](https://github.com/askonomm/lava/releases)
-3. Run it with `.\lava.exe` (or add it to PATH to access globally as `bloggo`)
+3. Run it with `.\lava.exe` (or add it to PATH to access globally as `lava`)
 
 ### Java
 
