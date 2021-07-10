@@ -1,6 +1,6 @@
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import com.soynomm.bloggo.Template;
+import com.soynomm.lava.Template;
 import java.util.HashMap;
 
 public class TemplateTests {
