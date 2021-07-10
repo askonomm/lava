@@ -1,4 +1,4 @@
-# Bloggo
+# Lava
 
 A blog-oriented static site generator that supports static content in the form of Markdown files as well as 
 dynamic content in the form of Handlebars templates, allowing you to create flexible websites.
@@ -25,30 +25,30 @@ dynamic content in the form of Handlebars templates, allowing you to create flex
 ### Linux & macOS
 
 1. Open your terminal / shell
-2. Run `curl -s https://raw.githubusercontent.com/soynomm/bloggo/master/install.sh | bash`
+2. Run `curl -s https://raw.githubusercontent.com/askonomm/lava/master/install.sh | bash`
 
 ### Windows
 
-1. Download the `bloggo.exe` executable from the [latest release](https://github.com/soynomm/bloggo/releases)
-3. Run it with `.\bloggo.exe` (or add it to PATH to access globally as `bloggo`)
+1. Download the `lava.exe` executable from the [latest release](https://github.com/askonomm/lava/releases)
+3. Run it with `.\lava.exe` (or add it to PATH to access globally as `bloggo`)
 
 ### Java
 
-To run it on any platform that has Java, you'll need Java 11+, download the `bloggo.jar` file and run it with `java -jar bloggo.jar`.
+To run it on any platform that has Java, you'll need Java 11+, download the `lava.jar` file and run it with `java -jar lava.jar`.
 
 ## Updating
 
-To update any previous version you might have, simply overwrite/replace your existing Bloggo executable with a new one.
+To update any previous version you might have, simply overwrite/replace your existing Lava executable with a new one.
 
 ## Usage
 
-Using Bloggo is straight-forward in that you just need to have a resources' directory that contains everything your static
+Using Lava is straight-forward in that you just need to have a resources' directory that contains everything your static
 website needs, like a `config.json` file for configuration, a `layout.hbs` file for the website template as well as a `content` 
 directory inside the resources' directory for all the content files that make up your website.
 
 ### Directory structure
 
-By default, Bloggo is looking for a resources' directory called `resources` (you can specify any other directory by calling `bloggo -r {directory}` or `bloggo --resources {directory}`).
+By default, Lava is looking for a resources' directory called `resources` (you can specify any other directory by calling `lava -r {directory}` or `lava --resources {directory}`).
 The resources' directory structure needs to look like this:
 
 - resources/
@@ -196,7 +196,7 @@ including `layout.hbs` as well as any content file with the `.hbs` file extensio
 
 ### Command-line usage
 
-To see the full CLI usage of Bloggo, run Bloggo with `bloggo -h` or `bloggo --help`. 
+To see the full CLI usage of Lava, run Lava with `lava -h` or `lava --help`. 
 
 ## Example sites
 
