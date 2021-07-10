@@ -1,5 +1,5 @@
 import static org.junit.jupiter.api.Assertions.*;
-import com.soynomm.bloggo.Parser;
+import com.soynomm.lava.Parser;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.nio.file.Files;
