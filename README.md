@@ -197,7 +197,3 @@ including `layout.hbs` as well as any content file with the `.hbs` file extensio
 ### Command-line usage
 
 To see the full CLI usage of Lava, run Lava with `lava -h` or `lava --help`. 
-
-## Example sites
-
-- [Nomm](https://nomm.xyz) ([Github repository](https://github.com/soynomm/nomm.xyz))
