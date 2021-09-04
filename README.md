@@ -1,5 +1,7 @@
 # Lava
 
+**Note:** I've created a successor to this project called [Babe](https://github.com/askonomm/babe), so while Lava should be pretty stable, I will no longer be updating it.
+
 A blog-oriented static site generator that supports static content in the form of Markdown files as well as 
 dynamic content in the form of Handlebars templates, allowing you to create flexible websites.
 
